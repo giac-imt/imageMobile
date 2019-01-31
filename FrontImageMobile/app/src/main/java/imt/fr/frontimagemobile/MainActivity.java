@@ -2,33 +2,17 @@ package imt.fr.frontimagemobile;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    final int REQUEST_IMAGE_CAPTURE = 132;
-
-    static final int REQUEST_TAKE_PHOTO = 1;
+    final int REQUEST_IMAGE_CAPTURE = 61460;
 
     Button btn_appareil_photo;
-
-    ImageView img;
-
-    String mCurrentPhotoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
         btn_appareil_photo = findViewById(R.id.photo);
 
-        img = findViewById(R.id.imageView);
-
         btn_appareil_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
                 if (cameraIntent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
                 }
+
+                Log.d(this.getClass().getSimpleName() + "CAMERA", "Lancement de l'appareil photo effectué");
             }
         });
     }
@@ -53,16 +37,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            /*Bitmap thumbnail = MediaStore.Images.Media.getBitmap(
-                    getContentResolver(), imageUri);
-            img.setImageBitmap(thumbnail);
-            imageurl = getRealPathFromURI(imageUri);*/
-
+            //todo : envoyer directement le bundle ?
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            img.setImageBitmap(imageBitmap);
-            img.setVisibility(View.VISIBLE);
-            btn_appareil_photo.setVisibility(View.GONE);
+
+            Log.d(this.getClass().getSimpleName() + "CAMERA", "Prise de photo et retour avec le bundle sur l'activité 1");
+
+            Intent intent = new Intent(this, PhotoActivity.class);
+            intent.putExtra("image", imageBitmap);
+            startActivity(intent);
         }
     }
 }
