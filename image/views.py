@@ -11,10 +11,6 @@ from image.serializers import ImageSearchSerializer
 from rest_framework import status
 
 
-def index(request):
-    return HttpResponse("Hello")
-
-
 class ImageSearch(APIView):
     # get qui va renvoyer toutes les infos sur le résultat
     def get(self, request, pk, format=None):
@@ -23,6 +19,7 @@ class ImageSearch(APIView):
         return Response(serializer.data)
 
     # post pour créer le client/date
+    # todo : demander à quoi correspond le champ de liaison dans models + doit-on le voir dans DB ?
     # todo : faire la recherche sift ici (image)
     def post(self, request, format=None):
         errors = {"error": "Erreur du format de la photo"}
