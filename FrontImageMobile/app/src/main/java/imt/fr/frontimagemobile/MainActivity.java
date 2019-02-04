@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     String mCurrentPhotoPath;
 
+    File photoFile = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
-            File photoFile = null;
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
@@ -93,5 +94,30 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("image", uri);
             startActivity(intent);
         }
+    }
+
+    @Override
+    protected void onStop() {
+        //On efface le fichier temporaire une fois envoyé ou annulé
+        super.onStop();
+        if(photoFile != null){
+            deleteTempFiles(photoFile);
+        }
+    }
+
+    private boolean deleteTempFiles(File file) {
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            if (files != null) {
+                for (File f : files) {
+                    if (f.isDirectory()) {
+                        deleteTempFiles(f);
+                    } else {
+                        f.delete();
+                    }
+                }
+            }
+        }
+        return file.delete();
     }
 }
