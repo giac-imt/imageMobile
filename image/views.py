@@ -23,6 +23,7 @@ class ImageSearch(APIView):
         serializer = ImageSearchSerializer(image1, many=False)
         return Response(serializer.data)
 
+    # post pour créer le client/date
     def post(self, request, format=None):
         errors = {"error": "Erreur du format de la photo"}
         if len(request.data) is not 0:
