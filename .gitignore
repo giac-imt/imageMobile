@@ -78,3 +78,15 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+.idea/encodings.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/misc.xml
+*.pyc
+*.pyc
+*.pyc
+imageMobile/__pycache__/settings.cpython-37.pyc
+imageMobile/__pycache__/urls.cpython-37.pyc
+traitement/__pycache__/views.cpython-37.pyc
+traitement/__pycache__/urls.cpython-37.pyc
+traitement/__pycache__/views.cpython-37.pyc
+traitement/__pycache__/urls.cpython-37.pyc
