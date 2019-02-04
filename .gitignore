@@ -81,3 +81,6 @@ lint/tmp/
 FrontImageMobile/.idea/workspace.xml
 *.xml
 *.iml
+FrontImageMobile/app/app.iml
+FrontImageMobile/.idea/workspace.xml
+FrontImageMobile/.idea/misc.xml
