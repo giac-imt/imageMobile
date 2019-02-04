@@ -90,3 +90,4 @@ traitement/__pycache__/views.cpython-37.pyc
 traitement/__pycache__/urls.cpython-37.pyc
 traitement/__pycache__/views.cpython-37.pyc
 traitement/__pycache__/urls.cpython-37.pyc
+*.pyc
