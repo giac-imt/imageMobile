@@ -5,7 +5,7 @@ from django.db import models
 
 class ImageSearch(models.Model):
     client = models.CharField(max_length=200, default='')
-    date = models.TextField()
+    date = models.CharField(max_length=200, default='')
 
 
 class ImageResult(models.Model):
