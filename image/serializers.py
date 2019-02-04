@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from traitement.models import Image
+from image.models import ImageSearch
 
 
 class ImageSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Image
+        model = ImageSearch
         fields = ('description', 'base64_image')
 
