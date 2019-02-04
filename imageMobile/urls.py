@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+from image import views
 
 urlpatterns = [
     path('image/', include('image.urls')),
+    re_path(r'^image/(?P<pk>[0-9]+)/?$', views.ImageSearch.as_view()),
     path('admin/', admin.site.urls),
 ]
