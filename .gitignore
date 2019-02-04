@@ -79,3 +79,5 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 FrontImageMobile/.idea/workspace.xml
+*.xml
+*.iml
