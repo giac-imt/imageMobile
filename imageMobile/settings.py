@@ -25,7 +25,7 @@ SECRET_KEY = 'jou)*1f(pr=uv$wdf6-(ro*=)@6x)i+sz3v2lz#oy*5$@+c2cr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
