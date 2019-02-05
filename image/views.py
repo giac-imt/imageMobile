@@ -20,6 +20,8 @@ class ImageSearch(APIView):
     # todo : faire la recherche sift ici (image)
     def post(self, request, format=None):
         if len(request.data) is not 0:
+            client = request.META['HTTP_USER_AGENT']
+            request.data["client"] = client
             serializer = ImageSearchSerializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()
