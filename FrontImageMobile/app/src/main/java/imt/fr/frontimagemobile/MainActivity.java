@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Lancement de l'appareil photo avec photo en qualité high
+     */
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -66,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Créer un fichier image
+     * @return un fichier image
+     * @throws IOException
+     */
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -96,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Dès que l'activité se stoppe, effacer les fichiers temporaires
+     */
     @Override
     protected void onStop() {
         //On efface le fichier temporaire une fois envoyé ou annulé
@@ -105,6 +116,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Effacer les fichiers temporaires
+     * @param file : fichier temporaire à supprimer
+     * @return True si fichier supprimé
+     */
     private boolean deleteTempFiles(File file) {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
