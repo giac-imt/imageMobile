@@ -11,51 +11,13 @@ import numpy as np
 
 from analyse_image.extract_cnn_vgg16_keras import VGGNet
 
-'''
-ap = argparse.ArgumentParser()
-ap.add_argument("-database", required=True, help="Path to database which contains images to be indexed")
-ap.add_argument("-index", required=True, help="Name of index file")
-args = vars(ap.parse_args())
-'''
 
-'''
- Returns a list of filenames for all jpg images in a directory. 
-'''
-
-'''
-def get_imlist(path):
-    img_paths = list()
-    labels = list()
-    class_dirs = sorted(os.listdir(path))
-    dict_classid = dict()
-    for i in range(len(class_dirs)):
-        label = i
-        class_dir = class_dirs[i]
-        dict_classid[class_dir] = label
-        #class_path = os.path.join(path, class_dir)
-        class_path = path
-        file_names = sorted(os.listdir(class_path))
-        for file_name in file_names:
-            file_path = os.path.join(class_path, file_name)
-            img_paths.append(file_path)
-            labels.append(label)
-        img_paths = np.asarray(img_paths)
-        labels = np.asarray(labels)
-    return img_paths, labels
-
-'''
-'''
- Extract features and index the images
-'''
-'''
- Returns a list of filenames for all jpg images in a directory. 
-'''
 def get_imlist(path):
     return [os.path.join(path,f) for f in os.listdir(path) if f.endswith('.jpg')]
 
 
-if __name__ == "__main__":
-    db = img_paths = 'dataset-retr/train'
+def index():
+    db = img_paths = 'analyse_image/dataset-retr/train'
     img_list = get_imlist(db)
     
     print("--------------------------------------------------")

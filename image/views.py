@@ -6,6 +6,9 @@ from rest_framework.views import APIView
 
 from image.models import ImageSearch as imgsrch
 from image.serializers import ImageSearchSerializer
+from analyse_image.index import index as idx
+from analyse_image.query_online import query
+import base64
 
 
 class ImageSearch(APIView):
@@ -16,12 +19,24 @@ class ImageSearch(APIView):
         return Response(serializer.data)
 
     # post pour créer le client/date
-    # todo : demander à quoi correspond le champ de liaison dans models + doit-on le voir dans DB ?
-    # todo : faire la recherche sift ici (image)
     def post(self, request, format=None):
         if len(request.data) is not 0:
+            # Extraction du client
             client = request.META['HTTP_USER_AGENT']
             request.data["client"] = client
+
+            # Extraction de l'image
+            img_base64 = request.data["image_base64"]
+            imgdata = base64.b64decode(img_base64)
+            filename = 'image.jpg'
+            with open(filename, 'wb') as f:
+                image = f.write(imgdata)
+
+            index = idx()
+            #results = query(image)
+
+            print(index)
+
             serializer = ImageSearchSerializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()
