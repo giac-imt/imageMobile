@@ -10,7 +10,7 @@ class ImageResultSerializer(serializers.ModelSerializer):
 
 
 class ImageSearchSerializer(serializers.ModelSerializer):
-    #resultats = ImageResultSerializer(many=True)
+    resultats = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = ImageSearch

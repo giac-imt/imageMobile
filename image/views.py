@@ -31,10 +31,6 @@ class ImageSearch(APIView):
             if os.path.isfile('image.jpeg'):
                 os.remove('image.jpeg')
 
-            # Extraction du client
-            # client = request.META['HTTP_USER_AGENT']
-            # request.data["client"] = client
-
             # Extraction de l'image
             img_base64 = request.data["image_base64"]
             # img_base64_string = img_base64 + ''
@@ -42,13 +38,18 @@ class ImageSearch(APIView):
             # data = img_data_split[1]  # la data se situe derriere la virgule
             imgdata = base64.b64decode(img_base64)
             im = Image.open(BytesIO(imgdata))
-            im.save('image.jpeg', 'JPEG')
+            im.save('image.jpg', 'JPEG')
 
             # index = idx()
-            results = query('image.jpeg')
+            results = query('image.jpg')
 
-            # Preparation de l'objet Search
-            serializer = ImageSearchSerializer(data=request.data)
+            # Extraction du client
+            nom = request.META['HTTP_USER_AGENT']
+            ip = request.META['REMOTE_ADDR']
+            client = nom + '/IP :' + ip
+
+            # Preparation de l'objet Search avec les données du client (META)
+            serializer = ImageSearchSerializer(data={'client': client})
             # Enregistrement si valide pour avoir l'id
             if serializer.is_valid():
                 serializer.save()
