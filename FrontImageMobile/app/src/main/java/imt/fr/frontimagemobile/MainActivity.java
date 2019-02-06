@@ -1,8 +1,6 @@
 package imt.fr.frontimagemobile;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -23,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     final int REQUEST_IMAGE_CAPTURE = 61460;
 
     Button btn_appareil_photo;
+    Button btn_photo_librairie;
+    Button btn_importer_zip;
+    Button btn_indexer;
 
     String mCurrentPhotoPath;
 
@@ -33,13 +34,36 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btn_appareil_photo = findViewById(R.id.photo);
+        btn_appareil_photo = findViewById(R.id.prendre_photo);
+        btn_photo_librairie = findViewById(R.id.importer_photo);
+        btn_importer_zip = findViewById(R.id.importer_zip);
+        btn_indexer = findViewById(R.id.indexer);
 
         btn_appareil_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dispatchTakePictureIntent();
-                Log.d(this.getClass().getSimpleName() + "CAMERA", "Lancement de l'appareil photo effectué");
+            }
+        });
+
+        btn_photo_librairie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dispatchTakePictureIntent();
+            }
+        });
+
+        btn_importer_zip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dispatchTakePictureIntent();
+            }
+        });
+
+        btn_indexer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dispatchTakePictureIntent();
             }
         });
     }
@@ -96,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             File file = new File(mCurrentPhotoPath);
             Uri uri = Uri.fromFile(file);
 
-            Log.d(this.getClass().getSimpleName() + "CAMERA", "Prise de photo et retour avec le bundle sur l'activité 1");
+            Log.d(this.getClass().getSimpleName() + "CAMERA", "Prise de photo et retour avec le bundle sur l'activité main");
 
             Intent intent = new Intent(this, PhotoActivity.class);
             intent.putExtra("image", uri);
@@ -112,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         //On efface le fichier temporaire une fois envoyé ou annulé
         super.onStop();
         if(photoFile != null){
-            deleteTempFiles(photoFile);
+            //deleteTempFiles(photoFile);
         }
     }
 

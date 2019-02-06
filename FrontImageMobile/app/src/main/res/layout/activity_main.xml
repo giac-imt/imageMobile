@@ -7,17 +7,51 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/photo"
+        android:id="@+id/prendre_photo"
         android:layout_width="226dp"
-        android:layout_height="151dp"
+        android:layout_height="100dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Prendre une photo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/main_activity_btn_prendre_photo"
+        app:layout_constraintBottom_toTopOf="@+id/importer_photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/importer_photo"
+        android:layout_width="226dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/main_activity_btn_importer_photo"
+        app:layout_constraintBottom_toTopOf="@+id/importer_zip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prendre_photo" />
+
+    <Button
+        android:id="@+id/importer_zip"
+        android:layout_width="226dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/main_activity_btn_importer_zip"
+        app:layout_constraintBottom_toTopOf="@+id/indexer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/importer_photo" />
+
+    <Button
+        android:id="@+id/indexer"
+        android:layout_width="226dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/main_activity_btn_indexer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/importer_zip" />
 
 </android.support.constraint.ConstraintLayout>

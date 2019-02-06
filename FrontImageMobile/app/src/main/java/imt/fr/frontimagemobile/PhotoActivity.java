@@ -25,12 +25,14 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PhotoActivity extends AppCompatActivity {
 
-    ImageView img;
+    ImageView imageView;
 
-    Button btn;
+    Button btn_analyser;
 
     Uri imageUri;
 
@@ -39,23 +41,23 @@ public class PhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
 
-        img = findViewById(R.id.image_camera);
-        btn = findViewById(R.id.button);
+        imageView = findViewById(R.id.image_camera);
+        btn_analyser = findViewById(R.id.analyser);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn_analyser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getImageInfo();
+                postNewImage();
             }
         });
 
         //Extraire de l'intent l'image et l'afficher
         Intent intent = getIntent();
         if(intent != null) {
-            Log.d(this.getClass().getSimpleName() + "INTENT", "Intent présent avec la photo");
+            Log.d(this.getClass().getSimpleName() + "INTENT", "Intent présent");
             Bundle intentBundle = intent.getExtras();
             imageUri = (Uri) intentBundle.get("image");
-            img.setImageURI(imageUri);
+            imageView.setImageURI(imageUri);
         }
     }
 //todo : réussir get simple
@@ -65,7 +67,7 @@ public class PhotoActivity extends AppCompatActivity {
      * GET les infos de l'image (score) après analyse
      */
     private void getImageInfo(){
-        String url = "http://192.168.1.33:8000/image/1/";
+        String url = "http://172.20.10.2:8000/image/1/";
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -89,6 +91,38 @@ public class PhotoActivity extends AppCompatActivity {
      * POST pour envoyer l'image vers l'analyse avec conversion en base64
      */
     private void postNewImage(){
+        String encodeImage = encodeImageToBase64();
+
+        Map<String,String> params = new HashMap<>();
+        params.put("image_base64", encodeImage);
+
+        JSONObject jsonObject = new JSONObject(params);
+
+        String url = "http://192.168.1.33:8000/image/";
+        RequestQueue queue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(this.getClass().getSimpleName() + " POST", "réponse OK");
+                    }
+                }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d(this.getClass().getSimpleName() + " POST", "Réponse KO : " + error.getMessage() + error.getStackTrace().toString());
+                }
+        });
+        queue.add(jsonObjectRequest);
+    }
+
+    /**
+     * Méthode pour encoder la photo en base64
+     * @return string d'une image en base 64
+     */
+    private String encodeImageToBase64(){
         File file = new File(imageUri.getPath());
         FileInputStream fis = null;
         try{
@@ -101,24 +135,6 @@ public class PhotoActivity extends AppCompatActivity {
         bm.compress(Bitmap.CompressFormat.JPEG,100,baos);
         byte[] byteArray = baos.toByteArray();
         String encodeImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
-
-        /*String url = "http://192.168.1.33:8000/image/";
-        RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.POST,
-                url,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("tagggg", "réponse OK");
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("tagggg", "Réponse KO : " + error.getMessage() + error.getStackTrace().toString());
-            }
-        });
-        queue.add(jsonObjectRequest);*/
+        return encodeImage;
     }
 }

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FrontImageMobile</string>
+    <string name="main_activity_btn_prendre_photo">Prendre une photo</string>
+    <string name="main_activity_btn_importer_photo">Importer une photo</string>
+    <string name="main_activity_btn_importer_zip">Importer une base de données</string>
+    <string name="main_activity_btn_indexer">Indexer</string>
+
+    <string name="photo_activity_btn_analyser">Analyser</string>
 </resources>
