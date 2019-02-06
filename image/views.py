@@ -28,8 +28,8 @@ class ImageSearch(APIView):
     def post(self, request, format=None):
         if len(request.data) is not 0:
             # Supprimer l'image prise par la camera si existante sur le serveur
-            if os.path.isfile('image.jpeg'):
-                os.remove('image.jpeg')
+            if os.path.isfile('image.jpg'):
+                os.remove('image.jpg')
 
             # Extraction de l'image
             img_base64 = request.data["image_base64"]
@@ -64,6 +64,7 @@ class ImageSearch(APIView):
                         print(serializer_results.errors)
                 else:
                     print(serializer.errors)
-                response = Response(serializer.data, status=status.HTTP_201_CREATED)
+                response = Response({'message': 'Data created', 'id': imgsrch.objects.last().id},
+                                    status=status.HTTP_201_CREATED)
                 return response
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
