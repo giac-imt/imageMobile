@@ -30,9 +30,8 @@ def index():
     model = VGGNet()
     for i, img_path in enumerate(img_list):
         norm_feat = model.extract_feat(img_path)
-        img_name = os.path.split(img_path)[1]
         feats.append(norm_feat)
-        names.append(img_name)
+        names.append(img_path)
         print("extracting feature from image No. %d , %d images in total" %((i+1), len(img_list)))
 
     feats = np.array(feats)

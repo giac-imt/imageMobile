@@ -11,4 +11,4 @@ class ImageSearch(models.Model):
 class ImageResult(models.Model):
     url = models.CharField(max_length=200, default='')
     score = models.FloatField()
-    img_search_key = models.ForeignKey(ImageSearch, related_name='resultats', on_delete=models.CASCADE, default='')
+    img_search_key = models.ForeignKey(ImageSearch, related_name='resultats', on_delete=models.CASCADE)

@@ -10,8 +10,8 @@ class ImageResultSerializer(serializers.ModelSerializer):
 
 
 class ImageSearchSerializer(serializers.ModelSerializer):
-    #resultats = ImageResultSerializer(many=True, allow_null=True) ne pas oublier de remettre results dans fileds
+    #resultats = ImageResultSerializer(many=True)
 
     class Meta:
         model = ImageSearch
-        fields = ('client', 'date')
+        fields = ('client', 'date', 'resultats')

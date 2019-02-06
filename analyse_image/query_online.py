@@ -5,8 +5,6 @@
 
 """
 import h5py
-import matplotlib.image as mpimg
-import matplotlib.pyplot as plt
 import numpy as np
 
 from analyse_image.extract_cnn_vgg16_keras import VGGNet
@@ -33,12 +31,6 @@ def query(dir):
 
     # read and show query image
     queryDir = dir
-    queryImg = mpimg.imread(queryDir)
-    plt.figure()
-    plt.subplot(2, 1, 1)
-    plt.imshow(queryImg)
-    plt.title("Query Image")
-    plt.axis('off')
 
     # init VGGNet16 model
     model = VGGNet()
@@ -53,6 +45,7 @@ def query(dir):
 
 
     # number of top retrieved images to show
-    maxres = 3
-    imlist = [imgNames[index] for i,index in enumerate(rank_ID[0:maxres])]
-    print("top %d images in order are: " %maxres, imlist)
+    maxres = 5
+    imlist = [imgNames[index].decode("utf-8") for i, index in enumerate(rank_ID[0:maxres])]
+    imlistscore = [rank_score[0], rank_score[1], rank_score[2], rank_score[3], rank_score[4]]
+    return imlist, imlistscore
