@@ -60,8 +60,6 @@ public class PhotoActivity extends AppCompatActivity {
             imageView.setImageURI(imageUri);
         }
     }
-//todo : réussir get simple
-    //todo : envoyer photo en base64
 
     /**
      * GET les infos de l'image (score) après analyse
@@ -128,7 +126,7 @@ public class PhotoActivity extends AppCompatActivity {
         try{
             fis = new FileInputStream(file);
         } catch (Exception ex){
-            Log.e(this.getClass().getSimpleName(), ex.getMessage());
+            Log.e(this.getClass().getSimpleName(), ex.getMessage() +ex.getCause());
         }
         Bitmap bm = BitmapFactory.decodeStream(fis);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -136,5 +134,40 @@ public class PhotoActivity extends AppCompatActivity {
         byte[] byteArray = baos.toByteArray();
         String encodeImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
         return encodeImage;
+    }
+
+    /**
+     * Dès que l'activité se stoppe, effacer les fichiers temporaires
+     */
+    @Override
+    protected void onDestroy() {
+        //On efface le fichier temporaire une fois envoyé ou annulé
+        super.onDestroy();
+        Log.d("destroy", "destroy");
+        if(imageUri != null){
+            File file = new File(imageUri.getPath());
+            deleteTempFiles(file);
+        }
+    }
+
+    /**
+     * Effacer les fichiers temporaires
+     * @param file : fichier temporaire à supprimer
+     * @return True si fichier supprimé
+     */
+    private boolean deleteTempFiles(File file) {
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            if (files != null) {
+                for (File f : files) {
+                    if (f.isDirectory()) {
+                        deleteTempFiles(f);
+                    } else {
+                        f.delete();
+                    }
+                }
+            }
+        }
+        return file.delete();
     }
 }

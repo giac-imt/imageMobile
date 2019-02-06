@@ -10,15 +10,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     final int REQUEST_IMAGE_CAPTURE = 61460;
+    final int PICK_IMAGE_REQUEST    = 12345;
 
     Button btn_appareil_photo;
     Button btn_photo_librairie;
@@ -33,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         btn_appareil_photo = findViewById(R.id.prendre_photo);
         btn_photo_librairie = findViewById(R.id.importer_photo);
         btn_importer_zip = findViewById(R.id.importer_zip);
@@ -49,23 +65,44 @@ public class MainActivity extends AppCompatActivity {
         btn_photo_librairie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dispatchTakePictureIntent();
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, PICK_IMAGE_REQUEST);
             }
         });
 
         btn_importer_zip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dispatchTakePictureIntent();
+
             }
         });
 
         btn_indexer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dispatchTakePictureIntent();
+                indexer();
             }
         });
+    }
+
+    private void indexer(){
+        String url = "http://192.168.203.1:8000/image/60/";
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest jsonArrayRequest = new StringRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(this.getClass().getSimpleName() + " GET", "réponse OK");
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(this.getClass().getSimpleName() + " GET", "Réponse KO : " + error.getMessage() + error.getCause());
+            }
+        });
+        queue.add(jsonArrayRequest);
     }
 
     /**
@@ -126,38 +163,12 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("image", uri);
             startActivity(intent);
         }
-    }
+        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK){
+            Log.d(this.getClass().getSimpleName() + "CAMERA", "Import d'une photo et retour avec le bundle sur l'activité main");
 
-    /**
-     * Dès que l'activité se stoppe, effacer les fichiers temporaires
-     */
-    @Override
-    protected void onStop() {
-        //On efface le fichier temporaire une fois envoyé ou annulé
-        super.onStop();
-        if(photoFile != null){
-            //deleteTempFiles(photoFile);
+            Intent intent = new Intent(this, PhotoActivity.class);
+            intent.putExtra("image", data.getData());
+            startActivity(intent);
         }
-    }
-
-    /**
-     * Effacer les fichiers temporaires
-     * @param file : fichier temporaire à supprimer
-     * @return True si fichier supprimé
-     */
-    private boolean deleteTempFiles(File file) {
-        if (file.isDirectory()) {
-            File[] files = file.listFiles();
-            if (files != null) {
-                for (File f : files) {
-                    if (f.isDirectory()) {
-                        deleteTempFiles(f);
-                    } else {
-                        f.delete();
-                    }
-                }
-            }
-        }
-        return file.delete();
     }
 }
