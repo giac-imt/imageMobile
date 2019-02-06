@@ -85,8 +85,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void resultat(int id){
+        String url = "http://192.168.1.33:8000/image/" + id;
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest jsonArrayRequest = new StringRequest(
+                Request.Method.GET,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(this.getClass().getSimpleName() + " GET", "réponse OK");
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(this.getClass().getSimpleName() + " GET", "Réponse KO : " + error.getMessage() + error.getCause());
+            }
+        });
+        queue.add(jsonArrayRequest);
+    }
+
     private void indexer(){
-        String url = "http://192.168.203.1:8000/image/60/";
+        String url = "http://192.168.1.33:8000/index/";
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest jsonArrayRequest = new StringRequest(
                 Request.Method.GET,
