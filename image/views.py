@@ -12,17 +12,11 @@ from rest_framework.views import APIView
 from analyse_image.query_online import query
 from analyse_image.index import index as idx
 from image.models import ImageSearch as imgsrch
-from image.models import ImageResult as imgrslt
 from image.serializers import ImageSearchSerializer
 from image.serializers import ImageResultSerializer
 
 
 class ImageSearch(APIView):
-    # get qui va renvoyer toutes les infos sur le résultat
-    def get(self, request, pk, format=None):
-        image = imgsrch.objects.get(pk=pk)
-        serializer = ImageSearchSerializer(image, many=False)
-        return Response(serializer.data)
 
     # post pour créer le client/date
     def post(self, request, format=None):
@@ -40,7 +34,6 @@ class ImageSearch(APIView):
             im = Image.open(BytesIO(imgdata))
             im.save('image.jpg', 'JPEG')
 
-            # index = idx()
             results = query('image.jpg')
 
             # Extraction du client
@@ -68,3 +61,18 @@ class ImageSearch(APIView):
                                     status=status.HTTP_201_CREATED)
                 return response
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ImageResult(APIView):
+    # get qui va renvoyer toutes les infos sur le résultat
+    def get(self, request, pk, format=None):
+        image = imgsrch.objects.get(pk=pk)
+        serializer = ImageSearchSerializer(image, many=False)
+        return Response(serializer.data.get('resultats'))
+
+
+class ImageIndex(APIView):
+    # get qui renvoie la fonction d'indexage
+    def get(self, request, format=None):
+        index = idx()
+        return Response({'message': 'indexation OK'})

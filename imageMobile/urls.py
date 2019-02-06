@@ -19,6 +19,7 @@ from image import views
 
 urlpatterns = [
     path('image/', views.ImageSearch.as_view()),
-    re_path(r'^image/(?P<pk>[0-9]+)/?$', views.ImageSearch.as_view()),
+    re_path(r'^image/(?P<pk>[0-9]+)/?$', views.ImageResult.as_view()),
+    path('index/', views.ImageIndex.as_view()),
     path('admin/', admin.site.urls),
 ]
