@@ -56,13 +56,3 @@ def query(dir):
     maxres = 3
     imlist = [imgNames[index] for i,index in enumerate(rank_ID[0:maxres])]
     print("top %d images in order are: " %maxres, imlist)
-
-
-    # show top #maxres retrieved result one by one
-    for i, im in enumerate(imlist):
-        image = mpimg.imread('./dataset-retr/train'+"/"+im)
-        plt.subplot(2, 3, i+4)
-        plt.imshow(image)
-        plt.title("search output %d" % (i + 1))
-        plt.axis('off')
-    plt.show()

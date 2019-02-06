@@ -36,6 +36,7 @@ def index():
         print("extracting feature from image No. %d , %d images in total" %((i+1), len(img_list)))
 
     feats = np.array(feats)
+    names = np.array(names, dtype="S")
     # directory for storing extracted features
     #output = args["index"]
     output = 'featureCNN.h5'
