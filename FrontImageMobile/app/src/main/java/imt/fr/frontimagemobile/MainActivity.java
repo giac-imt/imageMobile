@@ -75,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
         btn_importer_zip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), ResultatActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -20,8 +21,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,8 +30,11 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import imt.fr.frontimagemobile.models.ResultModel;
 
 public class PhotoActivity extends AppCompatActivity {
 
@@ -40,8 +44,10 @@ public class PhotoActivity extends AppCompatActivity {
 
     Uri imageUri;
 
+    ArrayList<ResultModel> resultats = new ArrayList<>();
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
 
@@ -66,12 +72,7 @@ public class PhotoActivity extends AppCompatActivity {
     }
 
     /**
-     * GET les infos de l'image (score) après analyse
-     */
-
-
-    /**
-     * Fonction qui retourne les resultats d'une recherche
+     * Fonction qui retourne les resultats d'une recherche dans une nouvelle activité
      * @param id : id en réponse du post fait précedemment
      */
     private void resultat(int id){
@@ -85,6 +86,23 @@ public class PhotoActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         Log.d(this.getClass().getSimpleName() + " GET", "réponse OK" + response);
+                        try{
+                            Gson gson = new Gson();
+                            for(int i = 0; i < 5; i++){
+                                String url = response.getJSONObject(i).get("url").toString();
+                                float score = Float.parseFloat(response.getJSONObject(i).get("score").toString());
+                                resultats.add(new ResultModel(url, score));
+                            }
+
+                            //Changement d'activité pour afficher les résultats
+                            Intent intent = new Intent(getApplicationContext(), ResultatActivity.class);
+                            intent.putExtra("image", imageUri);
+                            intent.putParcelableArrayListExtra("resultats", resultats);
+                            startActivity(intent);
+
+                        } catch (Exception e){
+                            Log.e(this.getClass().getSimpleName() + " GET", e.getMessage());
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
