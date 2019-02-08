@@ -18,9 +18,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -65,25 +68,31 @@ public class PhotoActivity extends AppCompatActivity {
     /**
      * GET les infos de l'image (score) après analyse
      */
-    private void getImageInfo(){
-        String url = "http://172.20.10.2:8000/image/1/";
+
+
+    /**
+     * Fonction qui retourne les resultats d'une recherche
+     * @param id : id en réponse du post fait précedemment
+     */
+    private void resultat(int id){
+        String url = "http://192.168.1.33:8000/image/" + id;
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("tagggg", "réponse OK");
+                    public void onResponse(JSONArray response) {
+                        Log.d(this.getClass().getSimpleName() + " GET", "réponse OK" + response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("tagggg", "Réponse KO : " + error.getMessage() + error.getStackTrace().toString());
+                Log.d(this.getClass().getSimpleName() + " GET", "Réponse KO : " + error.getMessage() + error.getCause());
             }
         });
-        queue.add(jsonObjectRequest);
+        queue.add(jsonArrayRequest);
     }
 
     /**
@@ -97,7 +106,7 @@ public class PhotoActivity extends AppCompatActivity {
 
         JSONObject jsonObject = new JSONObject(params);
 
-        String url = "http://172.20.10.2:8000/image/";
+        String url = "http://192.168.1.33:8000/image/";
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST,
@@ -106,7 +115,15 @@ public class PhotoActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d(this.getClass().getSimpleName() + " POST", "réponse OK");
+                        String id = "";
+                        try{
+                            id = response.getString("id");
+                        } catch (Exception e){
+                            Log.e(this.getClass().getSimpleName() + " POST RESPONSE", "L'id n'a pas été retourné dans la réponse");
+                        }
+                        Log.d(this.getClass().getSimpleName() + " POST", "réponse OK/ ID : " + id);
+                        resultat(Integer.parseInt(id));
+
                     }
                 }, new Response.ErrorListener() {
                 @Override
@@ -114,7 +131,7 @@ public class PhotoActivity extends AppCompatActivity {
                     Log.d(this.getClass().getSimpleName() + " POST", "Réponse KO : " + error.getMessage() + error.getStackTrace().toString());
                 }
         });
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(40000,
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(jsonObjectRequest);
