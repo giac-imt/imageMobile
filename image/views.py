@@ -34,7 +34,10 @@ class ImageSearch(APIView):
             im = Image.open(BytesIO(imgdata))
             im.save('image.jpg', 'JPEG')
 
-            results = query('image.jpg')
+            try:
+                results = query('image.jpg')
+            except Exception as e:
+                print("Exception : %s" % e)
 
             # Extraction du client
             nom = request.META['HTTP_USER_AGENT']
@@ -74,5 +77,8 @@ class ImageResult(APIView):
 class ImageIndex(APIView):
     # get qui renvoie la fonction d'indexage
     def get(self, request, format=None):
-        index = idx()
+        try:
+            index = idx()
+        except Exception as e:
+            print("Exception : %s"% e)
         return Response({'message': 'indexation OK'})
