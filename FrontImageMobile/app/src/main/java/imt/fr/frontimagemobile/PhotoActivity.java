@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -96,7 +97,7 @@ public class PhotoActivity extends AppCompatActivity {
 
         JSONObject jsonObject = new JSONObject(params);
 
-        String url = "http://192.168.1.33:8000/image/";
+        String url = "http://172.20.10.2:8000/image/";
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST,
@@ -113,6 +114,9 @@ public class PhotoActivity extends AppCompatActivity {
                     Log.d(this.getClass().getSimpleName() + " POST", "Réponse KO : " + error.getMessage() + error.getStackTrace().toString());
                 }
         });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(40000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(jsonObjectRequest);
     }
 
@@ -134,40 +138,5 @@ public class PhotoActivity extends AppCompatActivity {
         byte[] byteArray = baos.toByteArray();
         String encodeImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
         return encodeImage;
-    }
-
-    /**
-     * Dès que l'activité se stoppe, effacer les fichiers temporaires
-     */
-    @Override
-    protected void onDestroy() {
-        //On efface le fichier temporaire une fois envoyé ou annulé
-        super.onDestroy();
-        Log.d("destroy", "destroy");
-        if(imageUri != null){
-            File file = new File(imageUri.getPath());
-            deleteTempFiles(file);
-        }
-    }
-
-    /**
-     * Effacer les fichiers temporaires
-     * @param file : fichier temporaire à supprimer
-     * @return True si fichier supprimé
-     */
-    private boolean deleteTempFiles(File file) {
-        if (file.isDirectory()) {
-            File[] files = file.listFiles();
-            if (files != null) {
-                for (File f : files) {
-                    if (f.isDirectory()) {
-                        deleteTempFiles(f);
-                    } else {
-                        f.delete();
-                    }
-                }
-            }
-        }
-        return file.delete();
     }
 }

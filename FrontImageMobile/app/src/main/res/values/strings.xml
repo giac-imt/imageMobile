@@ -1,9 +1,17 @@
 <resources>
     <string name="app_name">FrontImageMobile</string>
+
+    <!-- Main acttivity -->
     <string name="main_activity_btn_prendre_photo">Prendre une photo</string>
     <string name="main_activity_btn_importer_photo">Importer une photo</string>
     <string name="main_activity_btn_importer_zip">Importer une base de données</string>
     <string name="main_activity_btn_indexer">Indexer</string>
 
+    <!-- Fonction Indexer() -->
+    <string name="indexationOk">L\'indexation a bien été effectuée</string>
+    <string name="indexationKo">L\'indexation a rencontré une erreur</string>
+    <string name="indexationLancement">L\'indexation est en cours</string>
+
+    <!-- Photo acttivity -->
     <string name="photo_activity_btn_analyser">Analyser</string>
 </resources>

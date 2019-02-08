@@ -11,7 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         btn_indexer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), R.string.indexationLancement, Toast.LENGTH_SHORT).show();
                 indexer();
             }
         });
@@ -108,21 +111,27 @@ public class MainActivity extends AppCompatActivity {
     private void indexer(){
         String url = "http://192.168.1.33:8000/index/";
         RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest jsonArrayRequest = new StringRequest(
+        StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
                 url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d(this.getClass().getSimpleName() + " GET", "réponse OK");
+                        Log.d(this.getClass().getSimpleName() + " GET", "indexation OK");
+                        Toast.makeText(getApplicationContext(), R.string.indexationOk, Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d(this.getClass().getSimpleName() + " GET", "Réponse KO : " + error.getMessage() + error.getCause());
-            }
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d(this.getClass().getSimpleName() + " GET", "indexation KO : " + error.getMessage() + error.getCause());
+                    Toast.makeText(getApplicationContext(), R.string.indexationKo, Toast.LENGTH_SHORT).show();
+
+                }
         });
-        queue.add(jsonArrayRequest);
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(40000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(stringRequest);
     }
 
     /**
@@ -189,6 +198,23 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, PhotoActivity.class);
             intent.putExtra("image", data.getData());
             startActivity(intent);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.d("dest", "DESTROY");
+        deleteRecursive(photoFile);
+        super.onDestroy();
+    }
+
+    void deleteRecursive(File file) {
+        if(file != null) {
+            if (file.isDirectory())
+                for (File child : file.listFiles())
+                    deleteRecursive(child);
+
+            file.delete();
         }
     }
 }
