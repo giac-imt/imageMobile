@@ -72,7 +72,10 @@ class ImageResult(APIView):
     def get(self, request, pk, format=None):
         results = imgrslt.objects.filter(img_search_key_id=pk)
         serializer_response = ImageResultSerializer(results, many=True)
-        return Response(serializer_response.data, status=status.HTTP_200_OK)
+        if serializer_response.data.__len__() is not 0:
+            return Response(serializer_response.data, status=status.HTTP_200_OK)
+        else:
+            return Response({"Error" : "ID not found"}, status=status.HTTP_404_NOT_FOUND)
 
 
 class ImageIndex(APIView):
@@ -81,5 +84,5 @@ class ImageIndex(APIView):
         try:
             index = idx()
         except Exception as e:
-            print("Exception : %s"% e)
-        return Response({'message': 'indexation OK'})
+            print("Exception : %s" % e)
+        return Response({'message': status.HTTP_200_OK})
