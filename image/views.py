@@ -12,6 +12,7 @@ from rest_framework.views import APIView
 from analyse_image.query_online import query
 from analyse_image.index import index as idx
 from image.models import ImageSearch as imgsrch
+from image.models import ImageResult as imgrslt
 from image.serializers import ImageSearchSerializer
 from image.serializers import ImageResultSerializer
 
@@ -69,13 +70,13 @@ class ImageSearch(APIView):
 class ImageResult(APIView):
     # get qui va renvoyer toutes les infos sur le résultat
     def get(self, request, pk, format=None):
-        image = imgsrch.objects.get(pk=pk)
-        serializer = ImageSearchSerializer(image, many=False)
-        return Response(serializer.data.get('resultats'))
+        results = imgrslt.objects.filter(id=pk)
+        serializer_response = ImageResultSerializer(results, many=True)
+        return Response(serializer_response.data, status=status.HTTP_200_OK)
 
 
 class ImageIndex(APIView):
-    # get qui renvoie la fonction d'indexage
+    # get qui renvoie la fonction d'indexage de la base d'image du serveur
     def get(self, request, format=None):
         try:
             index = idx()
