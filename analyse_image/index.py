@@ -17,7 +17,7 @@ def get_imlist(path):
 
 
 def index():
-    db = img_paths = 'analyse_image/dataset-retr/train'
+    db = img_paths = 'analyse_image/datasetretr/train'
     img_list = get_imlist(db)
     
     print("--------------------------------------------------")

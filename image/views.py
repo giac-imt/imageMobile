@@ -18,8 +18,7 @@ from image.serializers import ImageResultSerializer
 
 
 class ImageSearch(APIView):
-
-    # post pour créer le client/date
+    # post pour créer le client/date et les resultats
     def post(self, request, format=None):
         if len(request.data) is not 0:
             # Supprimer l'image prise par la camera si existante sur le serveur
@@ -68,14 +67,14 @@ class ImageSearch(APIView):
 
 
 class ImageResult(APIView):
-    # get qui va renvoyer toutes les infos sur le résultat
+    # get qui va renvoyer toutes les infos sur la recherche
     def get(self, request, pk, format=None):
         results = imgrslt.objects.filter(img_search_key_id=pk)
         serializer_response = ImageResultSerializer(results, many=True)
         if serializer_response.data.__len__() is not 0:
             return Response(serializer_response.data, status=status.HTTP_200_OK)
         else:
-            return Response({"Error" : "ID not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"Error": "ID not found"}, status=status.HTTP_404_NOT_FOUND)
 
 
 class ImageIndex(APIView):
@@ -85,4 +84,16 @@ class ImageIndex(APIView):
             index = idx()
         except Exception as e:
             print("Exception : %s" % e)
+            return Response({'message': status.HTTP_500_INTERNAL_SERVER_ERROR})
         return Response({'message': status.HTTP_200_OK})
+
+
+class ImageBase64(APIView):
+    # get qui renvoie la base64 d'une image stockée sur le serveur
+    def get(self, request, url, format=None):
+        try:
+            print(request)
+        except Exception as e:
+            print("Exception : %s" % e)
+            return Response({'message': status.HTTP_404_NOT_FOUND})
+        return Response({'image_base46': "ok"}, status.HTTP_200_OK)
