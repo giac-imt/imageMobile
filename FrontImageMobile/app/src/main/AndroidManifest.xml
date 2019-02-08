@@ -35,8 +35,10 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".PhotoActivity" />
-        <activity android:name=".ResultatActivity" />
+        <activity android:name=".PhotoActivity"
+                  android:label="@string/activity_photo_name"/>
+        <activity android:name=".ResultatActivity"
+                  android:label="@string/activity_resultat_name"/>
     </application>
 
 </manifest>

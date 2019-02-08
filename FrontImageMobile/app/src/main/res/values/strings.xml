@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">FrontImageMobile</string>
+    <string name="app_name">Menu</string>
+    <string name="activity_photo_name">Analyse</string>
+    <string name="activity_resultat_name">Résultats</string>
 
     <!-- Main acttivity -->
     <string name="main_activity_btn_prendre_photo">Prendre une photo</string>
@@ -12,6 +14,9 @@
     <string name="indexationKo">L\'indexation a rencontré une erreur</string>
     <string name="indexationLancement">L\'indexation est en cours</string>
 
-    <!-- Photo acttivity -->
+    <!-- Photo activity -->
     <string name="photo_activity_btn_analyser">Analyser</string>
+
+    <!-- Resultat activity -->
+    <string name="resultat_activity_btn_retour">Retour</string>
 </resources>
