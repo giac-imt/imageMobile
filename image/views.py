@@ -70,7 +70,7 @@ class ImageSearch(APIView):
 class ImageResult(APIView):
     # get qui va renvoyer toutes les infos sur le résultat
     def get(self, request, pk, format=None):
-        results = imgrslt.objects.filter(id=pk)
+        results = imgrslt.objects.filter(img_search_key_id=pk)
         serializer_response = ImageResultSerializer(results, many=True)
         return Response(serializer_response.data, status=status.HTTP_200_OK)
 
