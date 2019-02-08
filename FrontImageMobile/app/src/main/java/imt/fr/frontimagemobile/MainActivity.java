@@ -88,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Fonction qui retourne les resultats d'une recherche
+     * @param id : id en réponse du post fait précedemment
+     */
     private void resultat(int id){
         String url = "http://192.168.1.33:8000/image/" + id;
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -108,6 +112,9 @@ public class MainActivity extends AppCompatActivity {
         queue.add(jsonArrayRequest);
     }
 
+    /**
+     * Fonction qui envoie un GET/index pour indexer la base d'image sur le serveur
+     */
     private void indexer(){
         String url = "http://192.168.1.33:8000/index/";
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -128,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
 
                 }
         });
+
+        // Ajout d'un timeout long pour ne pas avoir plusieurs GET
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(40000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));

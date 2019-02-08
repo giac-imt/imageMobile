@@ -11,21 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e629866-4749-467c-8f8c-d300303ccf3d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_1_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_1_1_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_3_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_3_0_2_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_3_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_3_0_2_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_monitor_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_monitor_1_0_2_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_1_0_2_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_butterknife_8_8_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_butterknife_8_8_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/PhotoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/PhotoActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -107,14 +93,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="17" />
-          <entry key="java" value="4059" />
+          <entry key="java" value="4416" />
           <entry key="xml" value="371" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="17" />
-          <entry key="JAVA" value="4059" />
+          <entry key="JAVA" value="4416" />
           <entry key="XML" value="371" />
         </counts>
       </usages-collector>
@@ -122,33 +108,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="84" column="84" selection-start-line="84" selection-start-column="84" selection-end-line="84" selection-end-column="84" />
+            <state relative-caret-position="90">
+              <caret line="91" column="58" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
               <folding>
                 <element signature="e#2557#2808#0" expanded="true" />
                 <element signature="e#2706#2734#0" expanded="true" />
                 <element signature="e#2807#2808#0" expanded="true" />
-                <element signature="e#3939#4309#0" expanded="true" />
-                <element signature="e#4219#4240#0" expanded="true" />
-                <element signature="e#4308#4309#0" expanded="true" />
-                <element signature="e#4311#4701#0" expanded="true" />
-                <element signature="e#4622#4643#0" expanded="true" />
-                <element signature="e#4700#4701#0" expanded="true" />
+                <element signature="e#3153#3405#0" expanded="true" />
+                <element signature="e#3404#3405#0" expanded="true" />
+                <element signature="e#3407#3666#0" expanded="true" />
+                <element signature="e#3665#3666#0" expanded="true" />
+                <element signature="method#indexer#0;class#MainActivity#0" />
+                <element signature="e#3969#4339#0" expanded="true" />
+                <element signature="e#4249#4270#0" expanded="true" />
+                <element signature="e#4338#4339#0" expanded="true" />
+                <element signature="e#4341#4731#0" expanded="true" />
+                <element signature="e#4652#4673#0" expanded="true" />
+                <element signature="e#4730#4731#0" expanded="true" />
+                <element signature="method#dispatchTakePictureIntent#0;class#MainActivity#0" />
                 <element signature="method#createImageFile#0;class#MainActivity#0" />
                 <element signature="method#onActivityResult#0;class#MainActivity#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="64" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -191,15 +174,16 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/PhotoActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="width" value="975" />
-    <option name="height" value="1049" />
+    <option name="x" value="1912" />
+    <option name="y" value="-416" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -388,11 +372,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="1912" y="-416" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.11409396" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.090618335" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -403,7 +387,7 @@
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32858709" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.449069" />
-      <window_info anchor="bottom" id="Logcat" order="4" sideWeight="0.49932885" visible="true" weight="0.37730497" />
+      <window_info anchor="bottom" id="Logcat" order="4" sideWeight="0.49932885" visible="true" weight="0.28850326" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50067115" side_tool="true" weight="0.7276596" />
       <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49932885" weight="0.2539007" />
@@ -457,13 +441,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java</url>
-          <line>206</line>
+          <line>215</line>
           <properties />
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java</url>
-          <line>212</line>
+          <line>221</line>
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
@@ -621,30 +605,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="84" column="84" selection-start-line="84" selection-start-column="84" selection-end-line="84" selection-end-column="84" />
-          <folding>
-            <element signature="e#2557#2808#0" expanded="true" />
-            <element signature="e#2706#2734#0" expanded="true" />
-            <element signature="e#2807#2808#0" expanded="true" />
-            <element signature="e#3939#4309#0" expanded="true" />
-            <element signature="e#4219#4240#0" expanded="true" />
-            <element signature="e#4308#4309#0" expanded="true" />
-            <element signature="e#4311#4701#0" expanded="true" />
-            <element signature="e#4622#4643#0" expanded="true" />
-            <element signature="e#4700#4701#0" expanded="true" />
-            <element signature="method#createImageFile#0;class#MainActivity#0" />
-            <element signature="method#onActivityResult#0;class#MainActivity#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="64" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="91" column="58" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
+          <folding>
+            <element signature="e#2557#2808#0" expanded="true" />
+            <element signature="e#2706#2734#0" expanded="true" />
+            <element signature="e#2807#2808#0" expanded="true" />
+            <element signature="e#3153#3405#0" expanded="true" />
+            <element signature="e#3404#3405#0" expanded="true" />
+            <element signature="e#3407#3666#0" expanded="true" />
+            <element signature="e#3665#3666#0" expanded="true" />
+            <element signature="method#indexer#0;class#MainActivity#0" />
+            <element signature="e#3969#4339#0" expanded="true" />
+            <element signature="e#4249#4270#0" expanded="true" />
+            <element signature="e#4338#4339#0" expanded="true" />
+            <element signature="e#4341#4731#0" expanded="true" />
+            <element signature="e#4652#4673#0" expanded="true" />
+            <element signature="e#4730#4731#0" expanded="true" />
+            <element signature="method#dispatchTakePictureIntent#0;class#MainActivity#0" />
+            <element signature="method#createImageFile#0;class#MainActivity#0" />
+            <element signature="method#onActivityResult#0;class#MainActivity#0" />
+          </folding>
         </state>
       </provider>
     </entry>
