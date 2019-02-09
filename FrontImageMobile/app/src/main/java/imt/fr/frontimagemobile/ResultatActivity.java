@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -33,6 +34,8 @@ public class ResultatActivity extends AppCompatActivity {
 
     ImageView imageView;
 
+    ScrollView scrollView;
+
     Uri imageUri;
 
     ArrayList<ResultModel> resultats = new ArrayList<>();
@@ -49,6 +52,7 @@ public class ResultatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_resultat);
 
         imageView = findViewById(R.id.resultat_activity_image_camera);
+        scrollView = findViewById(R.id.scrollView_layout_resultat);
         recyclerView = findViewById(R.id.recycler_view);
         btn_retour = findViewById(R.id.btn_retour);
 
@@ -77,7 +81,6 @@ public class ResultatActivity extends AppCompatActivity {
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         recyclerView.setAdapter(new ResultAdapter(resultats, bitmaps));
     }
 
@@ -116,5 +119,12 @@ public class ResultatActivity extends AppCompatActivity {
                 }
         });
         queue.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
