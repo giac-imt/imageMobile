@@ -72,8 +72,6 @@ public class PhotoActivity extends AppCompatActivity {
         }
     }
 
-
-
     /**
      * Fonction qui retourne les resultats d'une recherche dans une nouvelle activité
      * @param id : id en réponse du post fait précedemment
@@ -186,5 +184,12 @@ public class PhotoActivity extends AppCompatActivity {
         byte[] byteArray = baos.toByteArray();
         String encodeImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
         return encodeImage;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        File file = new File(imageUri.getPath());
+        file.delete();
     }
 }

@@ -177,21 +177,4 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
-    @Override
-    protected void onDestroy() {
-        Log.d("dest", "DESTROY");
-        deleteRecursive(photoFile);
-        super.onDestroy();
-    }
-
-    void deleteRecursive(File file) {
-        if(file != null) {
-            if (file.isDirectory())
-                for (File child : file.listFiles())
-                    deleteRecursive(child);
-
-            file.delete();
-        }
-    }
 }

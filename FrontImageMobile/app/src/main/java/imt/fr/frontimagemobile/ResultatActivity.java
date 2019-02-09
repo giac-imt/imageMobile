@@ -25,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import imt.fr.frontimagemobile.adapter.ResultAdapter;
@@ -124,6 +125,8 @@ public class ResultatActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        File file = new File(imageUri.getPath());
+        file.delete();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

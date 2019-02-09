@@ -11,7 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e629866-4749-467c-8f8c-d300303ccf3d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/PhotoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/PhotoActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/ResultatActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/ResultatActivity.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -81,28 +82,28 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gradle" value="8" />
-          <entry key="java" value="59" />
+          <entry key="java" value="61" />
           <entry key="xml" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="8" />
-          <entry key="JAVA" value="59" />
+          <entry key="JAVA" value="61" />
           <entry key="XML" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="28" />
-          <entry key="java" value="9837" />
+          <entry key="java" value="9902" />
           <entry key="xml" value="1453" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="28" />
-          <entry key="JAVA" value="9837" />
+          <entry key="JAVA" value="9902" />
           <entry key="XML" value="1453" />
         </counts>
       </usages-collector>
@@ -113,10 +114,43 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/ResultatActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="124" column="33" lean-forward="true" selection-start-line="124" selection-start-column="33" selection-end-line="124" selection-end-column="33" />
+            <state relative-caret-position="350">
+              <caret line="131" column="5" lean-forward="true" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
               <folding>
                 <element signature="e#4435#4464#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="178" column="5" selection-start-line="178" selection-start-column="5" selection-end-line="178" selection-end-column="5" />
+              <folding>
+                <element signature="e#3321#3342#0" expanded="true" />
+                <element signature="method#dispatchTakePictureIntent#0;class#MainActivity#0" />
+                <element signature="method#createImageFile#0;class#MainActivity#0" />
+                <element signature="method#onActivityResult#0;class#MainActivity#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/PhotoActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="410">
+              <caret line="190" column="30" lean-forward="true" selection-start-line="190" selection-start-column="30" selection-end-line="192" selection-end-column="22" />
+              <folding>
+                <element signature="method#onCreate#0;class#PhotoActivity#0" />
+                <element signature="docComment;method#resultat#0;class#PhotoActivity#0" />
+                <element signature="method#resultat#0;class#PhotoActivity#0" />
+                <element signature="docComment;method#postNewImage#0;class#PhotoActivity#0" />
+                <element signature="method#postNewImage#0;class#PhotoActivity#0" />
+                <element signature="docComment;method#encodeImageToBase64#0;class#PhotoActivity#0" />
+                <element signature="method#encodeImageToBase64#0;class#PhotoActivity#0" />
               </folding>
             </state>
           </provider>
@@ -181,12 +215,12 @@
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/adapter/ResultAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/PhotoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/recycler_resultat.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_resultat.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/PhotoActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/ResultatActivity.java" />
       </list>
     </option>
@@ -718,34 +752,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/PhotoActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="178" column="68" lean-forward="true" selection-start-line="178" selection-start-column="68" selection-end-line="178" selection-end-column="68" />
-          <folding>
-            <element signature="e#4026#4049#0" expanded="true" />
-            <element signature="e#4510#4533#0" expanded="true" />
-            <element signature="e#5812#5836#0" expanded="true" />
-            <element signature="e#6499#6523#0" expanded="true" />
-            <element signature="e#7328#7356#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-310">
-          <caret line="95" column="64" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
-          <folding>
-            <element signature="e#3321#3342#0" expanded="true" />
-            <element signature="e#3724#3745#0" expanded="true" />
-            <element signature="method#dispatchTakePictureIntent#0;class#MainActivity#0" />
-            <element signature="method#createImageFile#0;class#MainActivity#0" />
-            <element signature="method#onActivityResult#0;class#MainActivity#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -780,10 +786,39 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="178" column="5" selection-start-line="178" selection-start-column="5" selection-end-line="178" selection-end-column="5" />
+          <folding>
+            <element signature="e#3321#3342#0" expanded="true" />
+            <element signature="method#dispatchTakePictureIntent#0;class#MainActivity#0" />
+            <element signature="method#createImageFile#0;class#MainActivity#0" />
+            <element signature="method#onActivityResult#0;class#MainActivity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/PhotoActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="190" column="30" lean-forward="true" selection-start-line="190" selection-start-column="30" selection-end-line="192" selection-end-column="22" />
+          <folding>
+            <element signature="method#onCreate#0;class#PhotoActivity#0" />
+            <element signature="docComment;method#resultat#0;class#PhotoActivity#0" />
+            <element signature="method#resultat#0;class#PhotoActivity#0" />
+            <element signature="docComment;method#postNewImage#0;class#PhotoActivity#0" />
+            <element signature="method#postNewImage#0;class#PhotoActivity#0" />
+            <element signature="docComment;method#encodeImageToBase64#0;class#PhotoActivity#0" />
+            <element signature="method#encodeImageToBase64#0;class#PhotoActivity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/ResultatActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="124" column="33" lean-forward="true" selection-start-line="124" selection-start-column="33" selection-end-line="124" selection-end-column="33" />
+        <state relative-caret-position="350">
+          <caret line="131" column="5" lean-forward="true" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
           <folding>
             <element signature="e#4435#4464#0" expanded="true" />
           </folding>
