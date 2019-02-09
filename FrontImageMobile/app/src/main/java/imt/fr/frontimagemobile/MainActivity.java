@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     Button btn_indexer;
 
     String mCurrentPhotoPath;
-
     File photoFile = null;
 
     @Override
