@@ -24,5 +24,7 @@
 
     <!-- Resultat activity -->
     <string name="resultat_activity_btn_retour">Retour</string>
+    <string name="resultat_activity_tv_image">Image : </string>
+    <string name="resultat_activity_tv_score">Score :</string>
     <string name="analyse_ko_get_image">L\'analyse a échoué lors de la réception des images du serveur</string>
 </resources>

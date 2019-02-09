@@ -70,7 +70,7 @@ public class ResultatActivity extends AppCompatActivity {
         try {
             for(int i = 0; i < resultats.size(); i++) {
                 imageServeur(resultats.get(i).getUrl());
-                Thread.sleep(1000);
+                Thread.sleep(500);
             }
         } catch (Exception e){
             Log.e(this.getClass().getSimpleName() + "ERROR LIST BITMAP FROM SERVER", e.getMessage());
