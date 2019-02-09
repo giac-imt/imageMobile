@@ -1,6 +1,6 @@
 package imt.fr.frontimagemobile.adapter;
 
-import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,12 +12,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import imt.fr.frontimagemobile.R;
-import imt.fr.frontimagemobile.ResultatActivity;
 import imt.fr.frontimagemobile.models.ResultModel;
 
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewHolder> {
     private ArrayList<ResultModel> mDataset;
-    private Context context;
+    private ArrayList<Bitmap> bitmaps;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -32,9 +31,9 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewHold
         }
     }
 
-    public ResultAdapter(ArrayList<ResultModel> mDataset, Context context) {
+    public ResultAdapter(ArrayList<ResultModel> mDataset, ArrayList<Bitmap> bitmaps) {
         this.mDataset = mDataset;
-        this.context = context;
+        this.bitmaps = bitmaps;
     }
 
 
@@ -49,9 +48,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
-        //ResultatActivity resultImageServeur = new ResultatActivity();
         ResultModel result = mDataset.get(position);
-        //myViewHolder.image.setImageBitmap(resultImageServeur.returnBitmap(result.getUrl(), context));
+        myViewHolder.image.setImageBitmap(bitmaps.get(position));
         myViewHolder.score.setText(String.valueOf(result.getScore()) + "%");
     }
 
