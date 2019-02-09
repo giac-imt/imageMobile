@@ -92,8 +92,10 @@ class ImageBase64(APIView):
     # get qui renvoie la base64 d'une image stockée sur le serveur
     def get(self, request, url, format=None):
         try:
-            fichier = open(url, "r")
+            with open(url, 'rb') as open_file:
+                base_64 = base64.b64encode(open_file.read())
+            #print(base_64)
         except Exception as e:
             print("Exception : %s" % e)
             return Response({'message': 'Aucune image associée à ce chemin'}, status.HTTP_404_NOT_FOUND)
-        return Response({'image_base46': 'ok'}, status.HTTP_200_OK)
+        return Response({'image_base46': base_64}, status.HTTP_200_OK)
