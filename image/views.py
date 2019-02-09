@@ -94,7 +94,6 @@ class ImageBase64(APIView):
         try:
             with open(url, 'rb') as open_file:
                 base_64 = base64.b64encode(open_file.read())
-            #print(base_64)
         except Exception as e:
             print("Exception : %s" % e)
             return Response({'message': 'Aucune image associée à ce chemin'}, status.HTTP_404_NOT_FOUND)
