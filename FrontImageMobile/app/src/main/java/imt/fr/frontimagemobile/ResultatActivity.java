@@ -67,8 +67,13 @@ public class ResultatActivity extends AppCompatActivity {
             imageView.setImageURI(imageUri);
         }
 
-        for(int i = 0; i < 5; i++){
-            imageServeur(resultats.get(i).getUrl());
+        try {
+            for(int i = 0; i < resultats.size(); i++) {
+                imageServeur(resultats.get(i).getUrl());
+                Thread.sleep(1000);
+            }
+        } catch (Exception e){
+            Log.e(this.getClass().getSimpleName() + "ERROR LIST BITMAP FROM SERVER", e.getMessage());
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -108,10 +113,6 @@ public class ResultatActivity extends AppCompatActivity {
                     Log.d(this.getClass().getSimpleName() + " GET/PATH IMAGE SERVEUR BASE 64 ERROR", "Réponse KO : " + error.getMessage() + error.getCause());
                 }
         });
-
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(jsonObjectRequest);
     }
 }
