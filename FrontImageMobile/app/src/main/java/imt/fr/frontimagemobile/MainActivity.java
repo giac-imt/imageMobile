@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 photoFile = createImageFile();
             } catch (IOException ex) {
                 // Error occurred while creating the File
-                Log.e(this.getClass().getSimpleName(), ex.getMessage());
+                Log.e(this.getClass().getSimpleName() + " CREATE FILE ERROR", ex.getMessage());
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {

@@ -1,36 +1,43 @@
 package imt.fr.frontimagemobile.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import imt.fr.frontimagemobile.R;
+import imt.fr.frontimagemobile.ResultatActivity;
 import imt.fr.frontimagemobile.models.ResultModel;
 
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewHolder> {
     private ArrayList<ResultModel> mDataset;
+    private Context context;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView text1;
-        private final TextView text2;
+        private final ImageView image;
+        private final TextView score;
 
         public MyViewHolder(final View itemView) {
             super(itemView);
 
-            text1 = itemView.findViewById(R.id.text);
-            text2 = itemView.findViewById(R.id.text2);
+            image = itemView.findViewById(R.id.image_serveur);
+            score = itemView.findViewById(R.id.score);
         }
     }
 
-    public ResultAdapter(ArrayList<ResultModel> mDataset) {
+    public ResultAdapter(ArrayList<ResultModel> mDataset, Context context) {
         this.mDataset = mDataset;
+        this.context = context;
     }
+
+
 
     @NonNull
     @Override
@@ -42,9 +49,10 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
+        //ResultatActivity resultImageServeur = new ResultatActivity();
         ResultModel result = mDataset.get(position);
-        myViewHolder.text1.setText(result.getUrl());
-        myViewHolder.text2.setText(String.valueOf(result.getScore()) + "%");
+        //myViewHolder.image.setImageBitmap(resultImageServeur.returnBitmap(result.getUrl(), context));
+        myViewHolder.score.setText(String.valueOf(result.getScore()) + "%");
     }
 
     // Return the size of your dataset (invoked by the layout manager)

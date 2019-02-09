@@ -85,7 +85,7 @@ public class PhotoActivity extends AppCompatActivity {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Log.d(this.getClass().getSimpleName() + " GET", "réponse OK" + response);
+                        Log.d(this.getClass().getSimpleName() + " GET/ID Resultat", "réponse OK" + response);
                         try{
                             Gson gson = new Gson();
                             for(int i = 0; i < 5; i++){
@@ -101,13 +101,13 @@ public class PhotoActivity extends AppCompatActivity {
                             startActivity(intent);
 
                         } catch (Exception e){
-                            Log.e(this.getClass().getSimpleName() + " GET", e.getMessage());
+                            Log.e(this.getClass().getSimpleName() + " GET/ID Resultat ERROR", e.getMessage());
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d(this.getClass().getSimpleName() + " GET", "Réponse KO : " + error.getMessage() + error.getCause());
+                Log.d(this.getClass().getSimpleName() + " GET/ID Resultat", "Réponse KO : " + error.getMessage() + error.getCause());
             }
         });
         queue.add(jsonArrayRequest);
@@ -139,14 +139,14 @@ public class PhotoActivity extends AppCompatActivity {
                         } catch (Exception e){
                             Log.e(this.getClass().getSimpleName() + " POST RESPONSE", "L'id n'a pas été retourné dans la réponse");
                         }
-                        Log.d(this.getClass().getSimpleName() + " POST", "réponse OK/ ID : " + id);
+                        Log.d(this.getClass().getSimpleName() + " POST RESPONSE", "réponse OK/ ID : " + id);
                         resultat(Integer.parseInt(id));
 
                     }
                 }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d(this.getClass().getSimpleName() + " POST", "Réponse KO : " + error.getMessage() + error.getStackTrace().toString());
+                    Log.d(this.getClass().getSimpleName() + " POST RESPONSE ERROR", "Réponse KO : " + error.getMessage() + error.getStackTrace().toString());
                 }
         });
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000,
