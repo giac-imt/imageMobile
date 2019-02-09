@@ -17,7 +17,12 @@
 
     <!-- Photo activity -->
     <string name="photo_activity_btn_analyser">Analyser</string>
+    <string name="analyse_en_cours">L\'analyse est en cours</string>
+    <string name="analyse_ko_post">L\'analyse a échoué lors de la création des données</string>
+    <string name="analyse_ko_get">L\'analyse a échoué lors de la recherche de la donnée créée</string>
+    <string name="analyse_ko_encodage">L\'analyse a échoué lors la conversion de l\'image envoyée</string>
 
     <!-- Resultat activity -->
     <string name="resultat_activity_btn_retour">Retour</string>
+    <string name="analyse_ko_get_image">L\'analyse a échoué lors de la réception des images du serveur</string>
 </resources>

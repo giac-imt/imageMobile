@@ -13,8 +13,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -105,12 +105,14 @@ public class ResultatActivity extends AppCompatActivity {
 
                         } catch (Exception e){
                             Log.e(this.getClass().getSimpleName() + " GET/PATH IMAGE SERVEUR BASE 64 EXCEPTION", e.getMessage());
+                            Toast.makeText(getApplicationContext(), R.string.analyse_ko_get_image, Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.d(this.getClass().getSimpleName() + " GET/PATH IMAGE SERVEUR BASE 64 ERROR", "Réponse KO : " + error.getMessage() + error.getCause());
+                    Toast.makeText(getApplicationContext(), R.string.analyse_ko_get_image, Toast.LENGTH_LONG).show();
                 }
         });
         queue.add(jsonObjectRequest);

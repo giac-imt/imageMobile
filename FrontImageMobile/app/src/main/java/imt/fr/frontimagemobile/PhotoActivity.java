@@ -5,14 +5,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -57,6 +56,8 @@ public class PhotoActivity extends AppCompatActivity {
         btn_analyser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), R.string.analyse_en_cours, Toast.LENGTH_LONG).show();
+                btn_analyser.setClickable(false);
                 postNewImage();
             }
         });
@@ -70,6 +71,8 @@ public class PhotoActivity extends AppCompatActivity {
             imageView.setImageURI(imageUri);
         }
     }
+
+
 
     /**
      * Fonction qui retourne les resultats d'une recherche dans une nouvelle activité
@@ -102,12 +105,16 @@ public class PhotoActivity extends AppCompatActivity {
 
                         } catch (Exception e){
                             Log.e(this.getClass().getSimpleName() + " GET/ID Resultat ERROR", e.getMessage());
+                            Toast.makeText(getApplicationContext(), R.string.analyse_ko_get, Toast.LENGTH_LONG).show();
+                            btn_analyser.setClickable(true);
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d(this.getClass().getSimpleName() + " GET/ID Resultat", "Réponse KO : " + error.getMessage() + error.getCause());
+                Toast.makeText(getApplicationContext(), R.string.analyse_ko_get, Toast.LENGTH_LONG).show();
+                btn_analyser.setClickable(true);
             }
         });
         queue.add(jsonArrayRequest);
@@ -138,6 +145,8 @@ public class PhotoActivity extends AppCompatActivity {
                             id = response.getString("id");
                         } catch (Exception e){
                             Log.e(this.getClass().getSimpleName() + " POST RESPONSE", "L'id n'a pas été retourné dans la réponse");
+                            Toast.makeText(getApplicationContext(), R.string.analyse_ko_post, Toast.LENGTH_LONG).show();
+                            btn_analyser.setClickable(true);
                         }
                         Log.d(this.getClass().getSimpleName() + " POST RESPONSE", "réponse OK/ ID : " + id);
                         resultat(Integer.parseInt(id));
@@ -147,6 +156,8 @@ public class PhotoActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.d(this.getClass().getSimpleName() + " POST RESPONSE ERROR", "Réponse KO : " + error.getMessage() + error.getStackTrace().toString());
+                    Toast.makeText(getApplicationContext(), R.string.analyse_ko_post, Toast.LENGTH_LONG).show();
+                    btn_analyser.setClickable(true);
                 }
         });
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000,
@@ -166,6 +177,8 @@ public class PhotoActivity extends AppCompatActivity {
             fis = new FileInputStream(file);
         } catch (Exception ex){
             Log.e(this.getClass().getSimpleName(), ex.getMessage() +ex.getCause());
+            Toast.makeText(getApplicationContext(), R.string.analyse_ko_encodage, Toast.LENGTH_LONG).show();
+            btn_analyser.setClickable(true);
         }
         Bitmap bm = BitmapFactory.decodeStream(fis);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
