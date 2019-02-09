@@ -23,6 +23,7 @@
     <string name="analyse_ko_encodage">L\'analyse a échoué lors la conversion de l\'image envoyée</string>
 
     <!-- Resultat activity -->
+    <string name="resultat_activity_titre">Résultats : </string>
     <string name="resultat_activity_btn_retour">Retour</string>
     <string name="resultat_activity_tv_image">Image : </string>
     <string name="resultat_activity_tv_score">Score :</string>
