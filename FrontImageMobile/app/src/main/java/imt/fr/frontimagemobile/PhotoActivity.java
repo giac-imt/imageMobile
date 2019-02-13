@@ -179,21 +179,25 @@ public class PhotoActivity extends AppCompatActivity {
      * @return string d'une image en base 64
      */
     private String encodeImageToBase64Camera(){
-        File file = new File(imageUri.getPath());
-        FileInputStream fis = null;
+        byte[] byteArray = null;
+
         try{
-            fis = new FileInputStream(file);
+            File file = new File(imageUri.getPath());
+            FileInputStream fis = new FileInputStream(file);
+            Bitmap bm = BitmapFactory.decodeStream(fis);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bm.compress(Bitmap.CompressFormat.JPEG,100,baos);
+            byteArray = baos.toByteArray();
+            baos.close();
         } catch (Exception ex){
             Log.e(this.getClass().getSimpleName(), ex.getMessage() +ex.getCause());
             Toast.makeText(getApplicationContext(), R.string.analyse_ko_encodage, Toast.LENGTH_LONG).show();
             btn_analyser.setClickable(true);
         }
-        Bitmap bm = BitmapFactory.decodeStream(fis);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG,100,baos);
-        byte[] byteArray = baos.toByteArray();
 
-        return Base64.encodeToString(byteArray, Base64.DEFAULT);
+        String encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+        return encodedImage;
     }
 
     /**
@@ -201,17 +205,19 @@ public class PhotoActivity extends AppCompatActivity {
      * @return string d'une image en base 64
      */
     private String encodeImageToBase64Library(){
-        Bitmap bitmap = null;
+        byte[] byteArray = null;
         try {
-            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
+            byteArray = baos.toByteArray();
+            baos.close();
         } catch (Exception e){
             Log.e(this.getClass().getSimpleName(), e.getMessage());
         }
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
-        byte[] byteArray = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-        return Base64.encodeToString(byteArray, Base64.DEFAULT);
+        return encodedImage;
     }
 
 

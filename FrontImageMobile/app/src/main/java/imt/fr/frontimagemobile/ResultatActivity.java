@@ -132,4 +132,9 @@ public class ResultatActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }
