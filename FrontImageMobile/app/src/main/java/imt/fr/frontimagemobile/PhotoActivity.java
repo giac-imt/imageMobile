@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -43,6 +44,8 @@ public class PhotoActivity extends AppCompatActivity {
 
     Uri imageUri;
 
+    String location;
+
     ArrayList<ResultModel> resultats = new ArrayList<>();
 
     @Override
@@ -68,6 +71,7 @@ public class PhotoActivity extends AppCompatActivity {
             Log.d(this.getClass().getSimpleName() + "INTENT", "Intent présent");
             Bundle intentBundle = intent.getExtras();
             imageUri = (Uri) intentBundle.get("image");
+            location = (String) intentBundle.get("location");
             imageView.setImageURI(imageUri);
         }
     }
@@ -122,7 +126,13 @@ public class PhotoActivity extends AppCompatActivity {
      * POST pour envoyer l'image vers l'analyse avec conversion en base64
      */
     private void postNewImage(){
-        String encodeImage = encodeImageToBase64();
+        String encodeImage = null;
+
+        if(location.equals("camera")) {
+            encodeImage = encodeImageToBase64Camera();
+        } else if (location.equals("library")){
+            encodeImage = encodeImageToBase64Library();
+        }
 
         Map<String,String> params = new HashMap<>();
         params.put("image_base64", encodeImage);
@@ -165,10 +175,10 @@ public class PhotoActivity extends AppCompatActivity {
     }
 
     /**
-     * Méthode pour encoder la photo en base64
+     * Méthode pour encoder la photo en base64 de la caméra
      * @return string d'une image en base 64
      */
-    private String encodeImageToBase64(){
+    private String encodeImageToBase64Camera(){
         File file = new File(imageUri.getPath());
         FileInputStream fis = null;
         try{
@@ -182,9 +192,28 @@ public class PhotoActivity extends AppCompatActivity {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.JPEG,100,baos);
         byte[] byteArray = baos.toByteArray();
-        String encodeImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
-        return encodeImage;
+
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
+
+    /**
+     * Méthode pour encoder la photo en base64 de la librairie
+     * @return string d'une image en base 64
+     */
+    private String encodeImageToBase64Library(){
+        Bitmap bitmap = null;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+        } catch (Exception e){
+            Log.e(this.getClass().getSimpleName(), e.getMessage());
+        }
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
+        byte[] byteArray = baos.toByteArray();
+
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
+    }
+
 
     @Override
     public void onBackPressed() {

@@ -166,13 +166,16 @@ public class MainActivity extends AppCompatActivity {
 
             Intent intent = new Intent(this, PhotoActivity.class);
             intent.putExtra("image", uri);
+            intent.putExtra("location", "camera");
             startActivity(intent);
         }
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK){
             Log.d(this.getClass().getSimpleName() + "CAMERA", "Import d'une photo et retour avec le bundle sur l'activité main");
+            Uri uri = data.getData();
 
             Intent intent = new Intent(this, PhotoActivity.class);
-            intent.putExtra("image", data.getData());
+            intent.putExtra("image", uri);
+            intent.putExtra("location", "library");
             startActivity(intent);
         }
     }

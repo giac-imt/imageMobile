@@ -60,6 +60,8 @@ public class ResultatActivity extends AppCompatActivity {
         btn_retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                File file = new File(imageUri.getPath());
+                file.delete();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
@@ -78,7 +80,7 @@ public class ResultatActivity extends AppCompatActivity {
                 Thread.sleep(500);
             }
         } catch (Exception e){
-            Log.e(this.getClass().getSimpleName() + "ERROR LIST BITMAP FROM SERVER", e.getMessage());
+            Log.e(this.getClass().getSimpleName() + "ERROR BITMAPS SERVER", e.getMessage());
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -90,7 +92,7 @@ public class ResultatActivity extends AppCompatActivity {
      * @param path : path reçu des images du résultat
      */
     public void imageServeur(String path){
-        String url = "http://192.168.1.33:8000/image/" + path;
+        String url = "http://192.168.1.33:8000/image/" + path.replace("\\", "/");
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
@@ -99,7 +101,7 @@ public class ResultatActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d(this.getClass().getSimpleName() + " GET/PATH IMAGE SERVEUR BASE 64", "réponse OK");
+                        Log.d(this.getClass().getSimpleName() + " GET/PATH IMG SERV B64", "réponse OK");
                         try {
                             String image_base_64_serveur = response.getString("image_base46").replaceAll("\\.", "");
 
@@ -108,14 +110,14 @@ public class ResultatActivity extends AppCompatActivity {
                             bitmaps.add(bitmapServeur);
 
                         } catch (Exception e){
-                            Log.e(this.getClass().getSimpleName() + " GET/PATH IMAGE SERVEUR BASE 64 EXCEPTION", e.getMessage());
+                            Log.e(this.getClass().getSimpleName() + " GET/PATH IMG S-B64 EXC", e.getMessage());
                             Toast.makeText(getApplicationContext(), R.string.analyse_ko_get_image, Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d(this.getClass().getSimpleName() + " GET/PATH IMAGE SERVEUR BASE 64 ERROR", "Réponse KO : " + error.getMessage() + error.getCause());
+                    Log.d(this.getClass().getSimpleName() + " GET/PATH IMG S-B64 ERR", "Réponse KO : " + error.getMessage() + error.getCause());
                     Toast.makeText(getApplicationContext(), R.string.analyse_ko_get_image, Toast.LENGTH_LONG).show();
                 }
         });
