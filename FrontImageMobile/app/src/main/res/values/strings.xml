@@ -4,7 +4,7 @@
     <string name="activity_resultat_name">Résultats</string>
 
     <!-- Main acttivity -->
-    <string name="main_activity_title">Menu</string>
+    <string name="main_activity_title">CNN Retrieval</string>
     <string name="main_activity_btn_prendre_photo">Prendre une photo</string>
     <string name="main_activity_btn_importer_photo">Importer une photo</string>
     <string name="main_activity_btn_importer_zip">Importer une base de données</string>
