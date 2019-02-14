@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     final int REQUEST_IMAGE_CAPTURE = 61460;
     final int PICK_IMAGE_REQUEST    = 12345;
+    final int PICK_ZIP_FILE_MANAGER    = 23541;
 
     Button btn_appareil_photo;
     Button btn_photo_librairie;
@@ -65,8 +66,9 @@ public class MainActivity extends AppCompatActivity {
         btn_importer_zip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ResultatActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("application/zip");
+                startActivityForResult(intent, PICK_ZIP_FILE_MANAGER);
             }
         });
 
@@ -177,6 +179,10 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("image", uri);
             intent.putExtra("location", "library");
             startActivity(intent);
+        }
+
+        if(requestCode == PICK_ZIP_FILE_MANAGER && resultCode == RESULT_OK){
+            Log.d("HELLO ZIP", "HELLO ZIP");
         }
     }
 }
