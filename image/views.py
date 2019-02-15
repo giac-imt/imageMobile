@@ -20,7 +20,7 @@ from image.serializers import ImageSearchSerializer
 
 
 class ImageSearch(APIView):
-    # post pour créer le client/date et les resultats
+    # post pour créer le client/date et les resultats associés
     def post(self, request, format=None):
         if len(request.data) is not 0:
             # Supprimer l'image prise par la camera si existante sur le serveur
@@ -29,9 +29,6 @@ class ImageSearch(APIView):
 
             # Extraction de l'image
             img_base64 = request.data["image_base64"]
-            # img_base64_string = img_base64 + ''
-            # img_data_split = img_base64_string.split(",")  # je split la data des infos
-            # data = img_data_split[1]  # la data se situe derriere la virgule
             imgdata = base64.b64decode(img_base64)
             im = Image.open(BytesIO(imgdata))
             im.save('image.jpg', 'JPEG')
@@ -69,7 +66,7 @@ class ImageSearch(APIView):
 
 
 class ImageResult(APIView):
-    # get qui va renvoyer toutes les infos sur la recherche
+    # get qui va renvoyer toutes les infos sur la recherche créée précédemment
     def get(self, request, pk, format=None):
         results = imgrslt.objects.filter(img_search_key_id=pk)
         serializer_response = ImageResultSerializer(results, many=True)
@@ -83,6 +80,7 @@ class ImageIndex(APIView):
     # get qui renvoie la fonction d'indexage de la base d'image du serveur
     def get(self, request, format=None):
         try:
+            # lancer la fonction d'indexage
             index = idx()
         except Exception as e:
             print("Exception : %s" % e)
