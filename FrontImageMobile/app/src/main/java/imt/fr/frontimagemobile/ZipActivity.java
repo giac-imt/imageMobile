@@ -8,6 +8,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -33,6 +34,8 @@ public class ZipActivity extends AppCompatActivity {
 
     Button btn_envoyer;
 
+    ProgressBar progressBar;
+
     EditText editTextUrl;
 
     @Override
@@ -43,6 +46,7 @@ public class ZipActivity extends AppCompatActivity {
         btn_retour = findViewById(R.id.zip_button_retour);
         btn_envoyer = findViewById(R.id.zip_button_envoyer);
         editTextUrl = findViewById(R.id.zip_edittext_url);
+        progressBar = findViewById(R.id.zip_progressbar);
 
         btn_retour.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +60,8 @@ public class ZipActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(isValidUrl()) {
+                    btn_envoyer.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.VISIBLE);
                     Toast.makeText(getApplicationContext(), R.string.zip_activity_send_zip, Toast.LENGTH_SHORT).show();
                     remplacerDataset();
                 } else {
@@ -78,14 +84,18 @@ public class ZipActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d(this.getClass().getSimpleName() + " GET", "zip OK");
+                        Log.d(this.getClass().getSimpleName() + " GET", "Dataset remplacé");
                         Toast.makeText(getApplicationContext(), R.string.zip_activity_dataset_replaced, Toast.LENGTH_SHORT).show();
+                        btn_envoyer.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
                     }
                 }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d(this.getClass().getSimpleName() + " GET", "zip KO : " + error.getMessage() + error.getCause());
+                    Log.d(this.getClass().getSimpleName() + " GET", "Dataset non remplacé : " + error.getMessage() + error.getCause());
                     Toast.makeText(getApplicationContext(), R.string.zip_activity_dataset_error, Toast.LENGTH_SHORT).show();
+                    btn_envoyer.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
                 }
             });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
