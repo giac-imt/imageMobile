@@ -3,6 +3,7 @@
 import base64
 import os
 from io import BytesIO
+import requests
 
 from PIL import Image
 from rest_framework import status
@@ -101,6 +102,7 @@ class ImageBase64(APIView):
 
 
 class ZipToDataset(APIView):
-    # get qui renvoie une URL pour remplacer le dataset
-    def get(self, request, url, format=None):
+    # post qui renvoie une URL pour remplacer le dataset
+    def post(self, request, format=None):
+        req = requests.get(request.data.get('url'))
         return Response({'Dataset': "Dataset modifié"}, status.HTTP_200_OK)
