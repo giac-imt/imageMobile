@@ -2,20 +2,21 @@
 
 import base64
 import os
+import shutil
 from io import BytesIO
-import requests
 
 from PIL import Image
+from google_drive_downloader import GoogleDriveDownloader as gdd
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from analyse_image.query_online import query
 from analyse_image.index import index as idx
-from image.models import ImageSearch as imgsrch
+from analyse_image.query_online import query
 from image.models import ImageResult as imgrslt
-from image.serializers import ImageSearchSerializer
+from image.models import ImageSearch as imgsrch
 from image.serializers import ImageResultSerializer
+from image.serializers import ImageSearchSerializer
 
 
 class ImageSearch(APIView):
@@ -104,5 +105,19 @@ class ImageBase64(APIView):
 class ZipToDataset(APIView):
     # post qui renvoie une URL pour remplacer le dataset
     def post(self, request, format=None):
-        req = requests.get(request.data.get('url'))
+        try:
+            # effacer les images actuelles
+            shutil.rmtree('./analyse_image/datasetretr/train')
+
+            # recreer le dossier train
+            os.makedirs('./analyse_image/datasetretr/train')
+
+            # télécharger le zip sur google drive et dezipper
+            gdd.download_file_from_google_drive(file_id=request.data.get('url'),
+                                                dest_path='./analyse_image/datasetretr/train/dataset.zip', unzip=True)
+            # effacer le zip téléchargé
+            os.remove('./analyse_image/datasetretr/train/dataset.zip')
+        except Exception as e:
+            return Response({'Error': e})
+
         return Response({'Dataset': "Dataset modifié"}, status.HTTP_200_OK)

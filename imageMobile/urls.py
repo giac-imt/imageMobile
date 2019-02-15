@@ -21,7 +21,7 @@ urlpatterns = [
     path('image/', views.ImageSearch.as_view()),
     re_path(r'^image/(?P<pk>[0-9]+)/?$', views.ImageResult.as_view()),
     path('index/', views.ImageIndex.as_view()),
-    re_path(r'^image/(?P<url>[A-Za-z0-9/_.]+)/?$', views.ImageBase64.as_view()),
+    re_path(r'^image/(?P<url>[A-Za-z0-9/()_.]+)/?$', views.ImageBase64.as_view()),
     path('zip/', views.ZipToDataset.as_view()),
     path('admin/', admin.site.urls),
 ]
