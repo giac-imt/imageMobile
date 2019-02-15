@@ -98,3 +98,9 @@ class ImageBase64(APIView):
             print("Exception : %s" % e)
             return Response({'message': 'Aucune image associée à ce chemin'}, status.HTTP_404_NOT_FOUND)
         return Response({'image_base46': base_64}, status.HTTP_200_OK)
+
+
+class ZipToDataset(APIView):
+    # get qui renvoie une URL pour remplacer le dataset
+    def get(self, request, url, format=None):
+        return Response({'Dataset': "Dataset modifié"}, status.HTTP_200_OK)
