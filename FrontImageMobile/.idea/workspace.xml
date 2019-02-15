@@ -63,7 +63,7 @@
     <session id="-239915967">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="23" />
+          <entry key="project.closed" value="24" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="2" />
@@ -85,71 +85,55 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gradle" value="12" />
-          <entry key="java" value="70" />
-          <entry key="xml" value="55" />
+          <entry key="java" value="74" />
+          <entry key="xml" value="56" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="12" />
-          <entry key="JAVA" value="70" />
-          <entry key="XML" value="55" />
+          <entry key="JAVA" value="74" />
+          <entry key="XML" value="56" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="29" />
-          <entry key="java" value="11368" />
+          <entry key="java" value="11527" />
           <entry key="txt" value="5" />
-          <entry key="xml" value="2049" />
+          <entry key="xml" value="2103" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="29" />
-          <entry key="JAVA" value="11368" />
+          <entry key="JAVA" value="11527" />
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="XML" value="2049" />
+          <entry key="XML" value="2103" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="86" column="8" selection-start-line="86" selection-start-column="8" selection-end-line="110" selection-end-column="33" />
-              <folding>
-                <element signature="method#onCreate#0;class#MainActivity#0" />
-                <element signature="docComment;method#indexer#0;class#MainActivity#0" />
-                <element signature="docComment;method#dispatchTakePictureIntent#0;class#MainActivity#0" />
-                <element signature="method#dispatchTakePictureIntent#0;class#MainActivity#0" />
-                <element signature="docComment;method#createImageFile#0;class#MainActivity#0" />
-                <element signature="method#createImageFile#0;class#MainActivity#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/ZipActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="61" column="61" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
+            <state relative-caret-position="724">
+              <caret line="99" column="34" lean-forward="true" selection-start-line="99" selection-start-column="34" selection-end-line="99" selection-end-column="34" />
               <folding>
-                <element signature="e#1086#1330#0" expanded="true" />
-                <element signature="e#1329#1330#0" expanded="true" />
-                <element signature="e#1373#1642#0" expanded="true" />
-                <element signature="e#1523#1553#0" expanded="true" />
-                <element signature="e#1641#1642#0" expanded="true" />
-                <element signature="e#1960#2332#0" expanded="true" />
-                <element signature="e#2232#2270#0" expanded="true" />
-                <element signature="e#2331#2332#0" expanded="true" />
-                <element signature="e#2334#2725#0" expanded="true" />
-                <element signature="e#2645#2680#0" expanded="true" />
-                <element signature="e#2724#2725#0" expanded="true" />
+                <element signature="e#1328#1572#0" expanded="true" />
+                <element signature="e#1571#1572#0" expanded="true" />
+                <element signature="e#1615#2090#0" expanded="true" />
+                <element signature="e#1803#1833#0" expanded="true" />
+                <element signature="e#1988#2019#0" expanded="true" />
+                <element signature="e#2089#2090#0" expanded="true" />
+                <element signature="e#2601#2990#0" expanded="true" />
+                <element signature="e#2883#2921#0" expanded="true" />
+                <element signature="e#2989#2990#0" expanded="true" />
+                <element signature="e#2992#3393#0" expanded="true" />
+                <element signature="e#3296#3331#0" expanded="true" />
+                <element signature="e#3392#3393#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -158,18 +142,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="38" column="65" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_zip.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
+            <state relative-caret-position="367">
+              <caret line="34" column="52" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -215,8 +189,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_resultat.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_zip.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/ZipActivity.java" />
       </list>
     </option>
@@ -444,6 +418,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-1088" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14712153" />
@@ -457,7 +432,7 @@
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32858709" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39370933" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="4" sideWeight="0.49932885" visible="true" weight="0.3253796" />
+      <window_info anchor="bottom" id="Logcat" order="4" sideWeight="0.49932885" weight="0.3253796" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50067115" side_tool="true" weight="0.7276596" />
       <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49932885" weight="0.14750542" />
@@ -773,18 +748,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/PhotoActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="146" column="26" selection-start-line="146" selection-start-column="16" selection-end-line="146" selection-end-column="26" />
-          <folding>
-            <element signature="docComment;method#resultat#0;class#PhotoActivity#0" />
-            <element signature="method#resultat#0;class#PhotoActivity#0" />
-            <element signature="docComment;method#postNewImage#0;class#PhotoActivity#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -803,6 +766,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_zip.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="42" column="62" selection-start-line="42" selection-start-column="62" selection-end-line="42" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="34" column="52" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
@@ -818,37 +796,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_zip.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/PhotoActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
+        <state relative-caret-position="60">
+          <caret line="143" column="8" lean-forward="true" selection-start-line="143" selection-start-column="8" selection-end-line="173" selection-end-column="37" />
+          <folding>
+            <element signature="docComment;method#resultat#0;class#PhotoActivity#0" />
+            <element signature="method#resultat#0;class#PhotoActivity#0" />
+            <element signature="docComment;method#postNewImage#0;class#PhotoActivity#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-26/android/util/Patterns.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="65" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
+        <state relative-caret-position="185">
+          <caret line="315" column="58" lean-forward="true" selection-start-line="315" selection-start-column="58" selection-end-line="315" selection-end-column="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/imt/fr/frontimagemobile/ZipActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="61" column="61" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
+        <state relative-caret-position="724">
+          <caret line="99" column="34" lean-forward="true" selection-start-line="99" selection-start-column="34" selection-end-line="99" selection-end-column="34" />
           <folding>
-            <element signature="e#1086#1330#0" expanded="true" />
-            <element signature="e#1329#1330#0" expanded="true" />
-            <element signature="e#1373#1642#0" expanded="true" />
-            <element signature="e#1523#1553#0" expanded="true" />
-            <element signature="e#1641#1642#0" expanded="true" />
-            <element signature="e#1960#2332#0" expanded="true" />
-            <element signature="e#2232#2270#0" expanded="true" />
-            <element signature="e#2331#2332#0" expanded="true" />
-            <element signature="e#2334#2725#0" expanded="true" />
-            <element signature="e#2645#2680#0" expanded="true" />
-            <element signature="e#2724#2725#0" expanded="true" />
+            <element signature="e#1328#1572#0" expanded="true" />
+            <element signature="e#1571#1572#0" expanded="true" />
+            <element signature="e#1615#2090#0" expanded="true" />
+            <element signature="e#1803#1833#0" expanded="true" />
+            <element signature="e#1988#2019#0" expanded="true" />
+            <element signature="e#2089#2090#0" expanded="true" />
+            <element signature="e#2601#2990#0" expanded="true" />
+            <element signature="e#2883#2921#0" expanded="true" />
+            <element signature="e#2989#2990#0" expanded="true" />
+            <element signature="e#2992#3393#0" expanded="true" />
+            <element signature="e#3296#3331#0" expanded="true" />
+            <element signature="e#3392#3393#0" expanded="true" />
           </folding>
         </state>
       </provider>
