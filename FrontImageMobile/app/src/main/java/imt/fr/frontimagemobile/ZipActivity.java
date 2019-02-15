@@ -66,37 +66,34 @@ public class ZipActivity extends AppCompatActivity {
     }
 
     private void remplacerDataset(){
-        Map<String,String> params = new HashMap<>();
-        params.put("url", editTextUrl.getText().toString());
-
-        JSONObject jsonObject = new JSONObject(params);
-
-        String url = "http://192.168.1.33:8000/zip/";
+        String editText = editTextUrl.getText().toString();
+        int positionId = editText.indexOf("id=");
+        // le + 3 enlève le id= qui ne doit pas être dans la requête
+        String id = editText.substring(positionId+3);
+        String url = "http://192.168.1.33:8000/zip/" + id;
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.POST,
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.GET,
                 url,
-                jsonObject,
-                new Response.Listener<JSONObject>() {
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(this.getClass().getSimpleName() + " POST", "zip OK");
+                    public void onResponse(String response) {
+                        Log.d(this.getClass().getSimpleName() + " GET", "zip OK");
                         Toast.makeText(getApplicationContext(), R.string.zip_activity_dataset_replaced, Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d(this.getClass().getSimpleName() + " POST", "zip KO : " + error.getMessage() + error.getCause());
+                    Log.d(this.getClass().getSimpleName() + " GET", "zip KO : " + error.getMessage() + error.getCause());
                     Toast.makeText(getApplicationContext(), R.string.zip_activity_dataset_error, Toast.LENGTH_SHORT).show();
                 }
             });
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        queue.add(jsonObjectRequest);
+        queue.add(stringRequest);
     }
 
-    // validating email id
     private boolean isValidUrl() {
         return Patterns.WEB_URL.matcher(editTextUrl.getText()).matches();
     }

@@ -32,7 +32,8 @@
     <!-- Zip activity -->
     <string name="zip_activity_btn_retour">Retour</string>
     <string name="zip_activity_btn_envoyer">Envoyer</string>
-    <string name="zip_activity_label">Entrez une URL : \n (Attention, cette URL doit renvoyer un .zip)</string>
+    <string name="zip_activity_label">Entrez une URL :</string>
+    <string name="zip_activity_label_desc">- Fichier .zip \n- Lien Google Drive \n- Au moins 5 photos</string>
     <string name="zip_activity_edittext">URL</string>
     <string name="zip_activity_url_error">L\'url envoyée est incorrecte</string>
     <string name="zip_activity_send_zip">L\'archive a bien été envoyée</string>
