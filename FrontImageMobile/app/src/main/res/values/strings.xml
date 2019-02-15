@@ -34,4 +34,7 @@
     <string name="zip_activity_btn_envoyer">Envoyer</string>
     <string name="zip_activity_label">Entrez une URL : \n (Attention, cette URL doit renvoyer un .zip)</string>
     <string name="zip_activity_edittext">URL</string>
+    <string name="zip_activity_send_zip">L\'archive a bien été envoyée</string>
+    <string name="zip_activity_dataset_replaced">Le dataset a bien été modifié</string>
+    <string name="zip_activity_dataset_error">La modification du dataset a rencontré une erreur</string>
 </resources>
