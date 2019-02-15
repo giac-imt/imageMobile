@@ -28,4 +28,10 @@
     <string name="resultat_activity_tv_image">Image : </string>
     <string name="resultat_activity_tv_score">Score :</string>
     <string name="analyse_ko_get_image">L\'analyse a échoué lors de la réception des images du serveur</string>
+
+    <!-- Zip activity -->
+    <string name="zip_activity_btn_retour">Retour</string>
+    <string name="zip_activity_btn_envoyer">Envoyer</string>
+    <string name="zip_activity_label">Entrez une URL : \n (Attention, cette URL doit renvoyer un .zip)</string>
+    <string name="zip_activity_edittext">URL</string>
 </resources>

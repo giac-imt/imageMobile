@@ -66,9 +66,8 @@ public class MainActivity extends AppCompatActivity {
         btn_importer_zip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("application/zip");
-                startActivityForResult(intent, PICK_ZIP_FILE_MANAGER);
+                Intent intent = new Intent(getApplicationContext(), ZipActivity.class);
+                startActivity(intent);
             }
         });
 
