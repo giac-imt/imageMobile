@@ -52,11 +52,13 @@ public class ResultatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultat);
 
+        // Relier chaque élément du layout
         imageView = findViewById(R.id.resultat_activity_image_camera);
         scrollView = findViewById(R.id.scrollView_layout_resultat);
         recyclerView = findViewById(R.id.recycler_view);
         btn_retour = findViewById(R.id.btn_retour);
 
+        // Définition du comportement au clic
         btn_retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +90,7 @@ public class ResultatActivity extends AppCompatActivity {
     }
 
     /**
-     * Fonction qui retourne la base64 d'une image sur le serveur et la transforme en bitmap sur le mobile
+     * Fonction qui retourne la base64 d'une image sur le serveur et la transforme en bitmap
      * @param path : path reçu des images du résultat
      */
     public void imageServeur(String path){
@@ -105,6 +107,7 @@ public class ResultatActivity extends AppCompatActivity {
                         try {
                             String image_base_64_serveur = response.getString("image_base46").replaceAll("\\.", "");
 
+                            // Decodage du base64 pour pouvoir afficher les photos
                             byte[] decodedString = Base64.decode(image_base_64_serveur, Base64.DEFAULT);
                             Bitmap bitmapServeur = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                             bitmaps.add(bitmapServeur);
@@ -124,6 +127,9 @@ public class ResultatActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
     }
 
+    /**
+     * Si l'utilisateur appuie sur le bouton retour, on efface la photo qui n'est plus utilisée
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -131,10 +137,5 @@ public class ResultatActivity extends AppCompatActivity {
         file.delete();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }

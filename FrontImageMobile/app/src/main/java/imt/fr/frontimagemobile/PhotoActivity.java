@@ -56,10 +56,12 @@ public class PhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
 
+        // Relier chaque élément du layout
         imageView = findViewById(R.id.image_camera);
         btn_analyser = findViewById(R.id.analyser);
         progressBar = findViewById(R.id.photo_progressbar);
 
+        // Définition du comportement au clic
         btn_analyser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +100,7 @@ public class PhotoActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         Log.d(this.getClass().getSimpleName() + " GET/ID Resultat", "réponse OK" + response);
                         try{
+                            // Parsage des données
                             Gson gson = new Gson();
                             for(int i = 0; i < 5; i++){
                                 String url = response.getJSONObject(i).get("url").toString();
@@ -161,6 +164,8 @@ public class PhotoActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), R.string.analyse_ko_post, Toast.LENGTH_LONG).show();
                         }
                         Log.d(this.getClass().getSimpleName() + " POST RESPONSE", "réponse OK/ ID : " + id);
+
+                        // Si tout est correct, appeler la fonction suivante avec l'ID obtenu
                         resultat(Integer.parseInt(id));
 
                     }
@@ -203,7 +208,7 @@ public class PhotoActivity extends AppCompatActivity {
     }
 
     /**
-     * Méthode pour encoder la photo en base64 de la librairie
+     * Méthode pour encoder la photo en base64 de la librairie photo
      * @return string d'une image en base 64
      */
     private String encodeImageToBase64Library(){
@@ -222,7 +227,9 @@ public class PhotoActivity extends AppCompatActivity {
         return encodedImage;
     }
 
-
+    /**
+     * Si l'utilisateur appuie sur le bouton retour, on efface la photo qui n'est plus utilisée
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();

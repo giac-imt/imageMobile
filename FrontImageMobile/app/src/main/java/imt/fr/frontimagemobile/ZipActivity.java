@@ -34,11 +34,13 @@ public class ZipActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zip);
 
+        // Relier chaque élément du layout
         btn_retour = findViewById(R.id.zip_button_retour);
         btn_envoyer = findViewById(R.id.zip_button_envoyer);
         editTextUrl = findViewById(R.id.zip_edittext_url);
         progressBar = findViewById(R.id.zip_progressbar);
 
+        // Définition du comportement au clic
         btn_retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,11 +64,18 @@ public class ZipActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Fonction qui remplace le dataset du serveur par un zip provenant de google drive à l'aide de l'URL
+     */
     private void remplacerDataset(){
+
+        // On récupère l'URL complète et on extrait l'ID de l'URL
         String editText = editTextUrl.getText().toString();
         int positionId = editText.indexOf("id=");
-        // le + 3 enlève le id= qui ne doit pas être dans la requête
+
+        // +3 pour enlever "id=" du string
         String id = editText.substring(positionId+3);
+
         String url = "http://192.168.1.33:8000/zip/" + id;
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(
@@ -76,7 +85,11 @@ public class ZipActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.d(this.getClass().getSimpleName() + " GET", "Dataset remplacé");
+
+                        // Indication du résultat à l'utilisateur
                         Toast.makeText(getApplicationContext(), R.string.zip_activity_dataset_replaced, Toast.LENGTH_SHORT).show();
+
+                        // Retrait du loader, affichage du bouton
                         btn_envoyer.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.GONE);
                     }
@@ -84,7 +97,11 @@ public class ZipActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.d(this.getClass().getSimpleName() + " GET", "Dataset non remplacé : " + error.getMessage() + error.getCause());
+
+                    // Indication du résultat à l'utilisateur
                     Toast.makeText(getApplicationContext(), R.string.zip_activity_dataset_error, Toast.LENGTH_SHORT).show();
+
+                    // Retrait du loader, affichage du bouton
                     btn_envoyer.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
                 }
@@ -95,6 +112,10 @@ public class ZipActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
+    /**
+     * Fonction permettant de savoir si le string envoyé est bien une URL
+     * @return true si le string est une URL
+     */
     private boolean isValidUrl() {
         return Patterns.WEB_URL.matcher(editTextUrl.getText()).matches();
     }

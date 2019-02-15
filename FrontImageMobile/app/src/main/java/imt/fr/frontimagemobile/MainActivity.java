@@ -46,12 +46,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Relier chaque élément du layout
         btn_appareil_photo = findViewById(R.id.prendre_photo);
         btn_photo_librairie = findViewById(R.id.importer_photo);
         btn_importer_zip = findViewById(R.id.importer_zip);
         btn_indexer = findViewById(R.id.indexer);
         progressBar = findViewById(R.id.main_progressbar);
 
+        // Définition du comportement au clic
         btn_appareil_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), R.string.indexationLancement, Toast.LENGTH_SHORT).show();
+                // Apparition du loader, retrait du bouton
                 btn_indexer.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
                 indexer();
@@ -99,7 +103,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.d(this.getClass().getSimpleName() + " GET", "indexation OK");
+
+                        // Indication du résultat à l'utilisateur
                         Toast.makeText(getApplicationContext(), R.string.indexationOk, Toast.LENGTH_SHORT).show();
+
+                        // Retrait du loader, affichage du bouton
                         btn_indexer.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.GONE);
                     }
@@ -107,14 +115,18 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.d(this.getClass().getSimpleName() + " GET", "indexation KO : " + error.getMessage() + error.getCause());
+
+                    // Indication du résultat à l'utilisateur
                     Toast.makeText(getApplicationContext(), R.string.indexationKo, Toast.LENGTH_SHORT).show();
+
+                    // Retrait du loader, affichage du bouton
                     btn_indexer.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
 
                 }
         });
 
-        // Ajout d'un timeout long pour ne pas avoir plusieurs GET
+        // Ajout d'un timeout long pour ne pas avoir plusieurs GET envoyés
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(40000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -122,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Lancement de l'appareil photo avec photo en qualité high
+     * Lancement de l'appareil photo avec résolution maximale selon la documentation Android
      */
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -147,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Créer un fichier image
+     * Créer un fichier image pour la capture de photo selon la documentation Android
      * @return un fichier image
      * @throws IOException
      */
@@ -169,6 +181,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        // Si la prise photo s'est bien déroulée, l'envoie à l'activité Photo
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             File file = new File(mCurrentPhotoPath);
             Uri uri = Uri.fromFile(file);
@@ -180,6 +194,8 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("location", "camera");
             startActivity(intent);
         }
+
+        // Si la récupération de la librairie photo s'est bien déroulée, l'envoie à l'activité Photo
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK){
             Log.d(this.getClass().getSimpleName() + "CAMERA", "Import d'une photo et retour avec le bundle sur l'activité main");
             Uri uri = data.getData();
@@ -188,10 +204,6 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("image", uri);
             intent.putExtra("location", "library");
             startActivity(intent);
-        }
-
-        if(requestCode == PICK_ZIP_FILE_MANAGER && resultCode == RESULT_OK){
-            Log.d("HELLO ZIP", "HELLO ZIP");
         }
     }
 }
