@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     Button btn_importer_zip;
     Button btn_indexer;
 
+    ProgressBar progressBar;
+
     String mCurrentPhotoPath;
     File photoFile = null;
 
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         btn_photo_librairie = findViewById(R.id.importer_photo);
         btn_importer_zip = findViewById(R.id.importer_zip);
         btn_indexer = findViewById(R.id.indexer);
+        progressBar = findViewById(R.id.main_progressbar);
 
         btn_appareil_photo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), R.string.indexationLancement, Toast.LENGTH_SHORT).show();
+                btn_indexer.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
                 indexer();
             }
         });
@@ -94,12 +100,16 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         Log.d(this.getClass().getSimpleName() + " GET", "indexation OK");
                         Toast.makeText(getApplicationContext(), R.string.indexationOk, Toast.LENGTH_SHORT).show();
+                        btn_indexer.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
                     }
                 }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.d(this.getClass().getSimpleName() + " GET", "indexation KO : " + error.getMessage() + error.getCause());
                     Toast.makeText(getApplicationContext(), R.string.indexationKo, Toast.LENGTH_SHORT).show();
+                    btn_indexer.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
 
                 }
         });

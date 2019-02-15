@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -42,6 +43,8 @@ public class PhotoActivity extends AppCompatActivity {
 
     Button btn_analyser;
 
+    ProgressBar progressBar;
+
     Uri imageUri;
 
     String location;
@@ -55,12 +58,15 @@ public class PhotoActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.image_camera);
         btn_analyser = findViewById(R.id.analyser);
+        progressBar = findViewById(R.id.photo_progressbar);
 
         btn_analyser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), R.string.analyse_en_cours, Toast.LENGTH_LONG).show();
                 btn_analyser.setClickable(false);
+                btn_analyser.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
                 postNewImage();
             }
         });
@@ -103,12 +109,12 @@ public class PhotoActivity extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), ResultatActivity.class);
                             intent.putExtra("image", imageUri);
                             intent.putParcelableArrayListExtra("resultats", resultats);
+                            progressBar.setVisibility(View.GONE);
                             startActivity(intent);
 
                         } catch (Exception e){
                             Log.e(this.getClass().getSimpleName() + " GET/ID Resultat ERROR", e.getMessage());
                             Toast.makeText(getApplicationContext(), R.string.analyse_ko_get, Toast.LENGTH_LONG).show();
-                            btn_analyser.setClickable(true);
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -116,7 +122,6 @@ public class PhotoActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.d(this.getClass().getSimpleName() + " GET/ID Resultat", "Réponse KO : " + error.getMessage() + error.getCause());
                 Toast.makeText(getApplicationContext(), R.string.analyse_ko_get, Toast.LENGTH_LONG).show();
-                btn_analyser.setClickable(true);
             }
         });
         queue.add(jsonArrayRequest);
@@ -154,7 +159,6 @@ public class PhotoActivity extends AppCompatActivity {
                         } catch (Exception e){
                             Log.e(this.getClass().getSimpleName() + " POST RESPONSE", "L'id n'a pas été retourné dans la réponse");
                             Toast.makeText(getApplicationContext(), R.string.analyse_ko_post, Toast.LENGTH_LONG).show();
-                            btn_analyser.setClickable(true);
                         }
                         Log.d(this.getClass().getSimpleName() + " POST RESPONSE", "réponse OK/ ID : " + id);
                         resultat(Integer.parseInt(id));
@@ -165,7 +169,6 @@ public class PhotoActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     Log.d(this.getClass().getSimpleName() + " POST RESPONSE ERROR", "Réponse KO : " + error.getMessage() + error.getStackTrace().toString());
                     Toast.makeText(getApplicationContext(), R.string.analyse_ko_post, Toast.LENGTH_LONG).show();
-                    btn_analyser.setClickable(true);
                 }
         });
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000,
@@ -192,7 +195,6 @@ public class PhotoActivity extends AppCompatActivity {
         } catch (Exception ex){
             Log.e(this.getClass().getSimpleName(), ex.getMessage() +ex.getCause());
             Toast.makeText(getApplicationContext(), R.string.analyse_ko_encodage, Toast.LENGTH_LONG).show();
-            btn_analyser.setClickable(true);
         }
 
         String encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
