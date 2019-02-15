@@ -1,46 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/prendre_photo"
         android:layout_width="226dp"
         android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/main_activity_btn_prendre_photo"
-        app:layout_constraintBottom_toTopOf="@+id/importer_photo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center"/>
 
     <Button
         android:id="@+id/importer_photo"
         android:layout_width="226dp"
         android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/main_activity_btn_importer_photo"
-        app:layout_constraintBottom_toTopOf="@+id/importer_zip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prendre_photo" />
+        android:layout_gravity="center" />
 
     <Button
         android:id="@+id/importer_zip"
         android:layout_width="226dp"
         android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/main_activity_btn_importer_zip"
-        app:layout_constraintBottom_toTopOf="@+id/indexer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/importer_photo" />
+        android:layout_gravity="center"/>
 
     <Button
         android:id="@+id/indexer"
@@ -49,9 +40,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/main_activity_btn_indexer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/importer_zip" />
+        android:layout_gravity="center"/>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.LinearLayoutCompat>
