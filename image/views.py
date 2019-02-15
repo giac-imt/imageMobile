@@ -104,7 +104,7 @@ class ImageBase64(APIView):
 
 class ZipToDataset(APIView):
     # post qui renvoie une URL pour remplacer le dataset
-    def post(self, request, format=None):
+    def get(self, request, url, format=None):
         try:
             # effacer les images actuelles
             shutil.rmtree('./analyse_image/datasetretr/train')
@@ -113,8 +113,8 @@ class ZipToDataset(APIView):
             os.makedirs('./analyse_image/datasetretr/train')
 
             # télécharger le zip sur google drive et dezipper
-            gdd.download_file_from_google_drive(file_id=request.data.get('url'),
-                                                dest_path='./analyse_image/datasetretr/train/dataset.zip', unzip=True)
+            gdd.download_file_from_google_drive(file_id=url, dest_path='./analyse_image/datasetretr/train/dataset.zip',
+                                                unzip=True)
             # effacer le zip téléchargé
             os.remove('./analyse_image/datasetretr/train/dataset.zip')
         except Exception as e:
